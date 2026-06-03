@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="growbolt_app_name">Growbolt</string>
+    <string name="growbolt_offer_status">Offer Status</string>
+    <string name="growbolt_offer_status_subtitle">Tap to view your offer status</string>
+    <string name="growbolt_filter_all">All</string>
+    <string name="growbolt_complete_now">Register Now</string>
+    <string name="growbolt_tab_pending">Pending (%d)</string>
+    <string name="growbolt_tab_completed">Completed (%d)</string>
+    <string name="growbolt_tab_failed">Failed (%d)</string>
+    <string name="growbolt_empty_title">Explore Offer</string>
+    <string name="growbolt_empty_subtitle">Complete A New Offer To Start Earning Rewards</string>
+    <string name="growbolt_explore_offers">Explore Offers ›</string>
+    <string name="growbolt_start_offer">Start Offer</string>
+    <string name="growbolt_loading">Loading…</string>
+    <string name="growbolt_error_no_network">No internet connection</string>
+</resources>

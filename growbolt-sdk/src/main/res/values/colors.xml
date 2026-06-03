@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="growbolt_primary">#11B174</color>
+    <color name="growbolt_primary_dark">#098F5C</color>
+    <color name="growbolt_primary_light">#E8F8EF</color>
+    <color name="growbolt_text_primary">#1A1A1A</color>
+    <color name="growbolt_text_secondary">#757575</color>
+    <color name="growbolt_text_white">#FFFFFF</color>
+    <color name="growbolt_bg_surface">#FFFFFF</color>
+    <color name="growbolt_bg_screen">#F5F5F5</color>
+    <color name="growbolt_status_pending_bg">#FFF8E1</color>
+    <color name="growbolt_status_pending_text">#F9A825</color>
+    <color name="growbolt_status_completed_bg">#E8F8EF</color>
+    <color name="growbolt_status_completed_text">#1DB954</color>
+    <color name="growbolt_status_failed_bg">#FFEBEE</color>
+    <color name="growbolt_status_failed_text">#E53935</color>
+    <color name="growbolt_payout_bg">#1DB954</color>
+    <color name="growbolt_payout_text">#FFFFFF</color>
+    <color name="growbolt_divider">#E0E0E0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="growbolt_card_stroke">#E0F2E9</color>
+    <color name="growbolt_tab_active_bg">#1DB954</color>
+    <color name="growbolt_tab_inactive_stroke">#CCCCCC</color>
+</resources>

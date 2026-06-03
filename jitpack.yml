@@ -1,0 +1,6 @@
+jdk:
+  - openjdk17
+before_install:
+  - sdk auto-update-settings
+install:
+  - ./gradlew :growbolt-sdk:assembleRelease

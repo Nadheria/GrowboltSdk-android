@@ -1,0 +1,7 @@
+# Project exclude paths
+/.gradle/
+/build/
+/growbolt-sdk/build/
+/growbolt-sdk/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
+/sample-app/build/
+/sample-app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/

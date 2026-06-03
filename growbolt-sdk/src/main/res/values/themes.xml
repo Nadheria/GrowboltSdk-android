@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="GrowboltTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/growbolt_primary</item>
+        <item name="colorPrimaryDark">@color/growbolt_primary_dark</item>
+        <item name="android:windowBackground">@color/growbolt_bg_screen</item>
+        <item name="android:statusBarColor">@color/growbolt_primary_dark</item>
+    </style>
+
+    <!-- Offer card payout button -->
+    <style name="GrowboltPayoutButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/growbolt_payout_bg</item>
+        <item name="android:textColor">@color/growbolt_payout_text</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:minWidth">72dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <!-- Offer Status tab active -->
+    <style name="GrowboltTabActive" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/growbolt_text_white</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Offer Status tab inactive -->
+    <style name="GrowboltTabInactive" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/growbolt_text_secondary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Chip filter style -->
+    <style name="GrowboltFilterChip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/growbolt_bg_surface</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipStrokeColor">@color/growbolt_primary</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/growbolt_text_primary</item>
+    </style>
+
+    <!-- Explore offers button -->
+    <style name="GrowboltExploreButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/growbolt_primary</item>
+        <item name="android:textColor">@color/growbolt_text_white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <attr name="growboltFilterChipStyle" format="reference" />
+
+</resources>

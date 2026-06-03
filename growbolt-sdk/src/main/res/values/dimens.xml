@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="growbolt_spacing_xs">4dp</dimen>
+    <dimen name="growbolt_spacing_sm">8dp</dimen>
+    <dimen name="growbolt_spacing_md">16dp</dimen>
+    <dimen name="growbolt_spacing_lg">24dp</dimen>
+    <dimen name="growbolt_card_radius">16dp</dimen>
+    <dimen name="growbolt_offer_logo_size">60dp</dimen>
+    <dimen name="growbolt_banner_height">180dp</dimen>
+    <dimen name="growbolt_payout_btn_min_width">80dp</dimen>
+</resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/growbolt_bg_screen">
+
+    <!-- Green header with gradient + tabs -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/growbolt_header_gradient"
+        android:paddingBottom="28dp">
+
+        <!-- Back button + Title row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp">
+
+            <!-- Back button -->
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/growbolt_ic_back"
+                android:background="@drawable/growbolt_back_circle"
+                android:contentDescription="Back"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/growbolt_offer_status"
+                android:textColor="@color/growbolt_text_white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- 3-tab row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/growbolt_tabs_container"
+                android:padding="4dp">
+
+                <Button
+                    android:id="@+id/tabPending"
+                    style="@style/GrowboltTabActive"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/growbolt_tab_active"
+                    android:textColor="@color/growbolt_text_white"
+                    android:textSize="12sp"
+                    android:text="Pending (0)"
+                    tools:text="Pending (10)" />
+
+                <Button
+                    android:id="@+id/tabCompleted"
+                    style="@style/GrowboltTabInactive"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/growbolt_tab_inactive"
+                    android:textColor="@color/growbolt_text_white"
+                    android:textSize="12sp"
+                    android:text="Completed (0)"
+                    tools:text="Completed (12)" />
+
+                <Button
+                    android:id="@+id/tabFailed"
+                    style="@style/GrowboltTabInactive"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/growbolt_tab_inactive"
+                    android:textColor="@color/growbolt_text_white"
+                    android:textSize="12sp"
+                    android:text="Failed (0)"
+                    tools:text="Failed (13)" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Error text -->
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#E53935"
+        android:textSize="13sp"
+        android:visibility="gone"
+        tools:text="Network error" />
+
+    <!-- Progress bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+    <!-- Ongoing list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOngoing"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/growbolt_item_ongoing" />
+
+    <!-- Empty state -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:src="@drawable/growbolt_empty_box"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/growbolt_empty_title"
+            android:textColor="@color/growbolt_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/growbolt_empty_subtitle"
+            android:textColor="@color/growbolt_text_secondary"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" />
+
+        <Button
+            android:id="@+id/btnExploreOffers"
+            style="@style/GrowboltExploreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/growbolt_explore_offers" />
+    </LinearLayout>
+</LinearLayout>
