@@ -39,7 +39,7 @@ internal class OngoingViewModel : ViewModel() {
 
         viewModelScope.launch {
             val result = safeApiCall {
-                api.getOngoing(sub4 = config.userId, tab = tab.apiValue)
+                api.getOngoing(sub4 = GrowboltSdk.config.userId, tab = tab.apiValue)
             }
             _isLoading.value = false
             when (result) {

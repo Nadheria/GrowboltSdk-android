@@ -30,6 +30,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+
     }
 
     kotlinOptions {
@@ -65,6 +66,7 @@ dependencies {
 
     // Secure Storage
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation(libs.play.services.ads.identifier)
 
     // Testing
     testImplementation("junit:junit:4.13.2")

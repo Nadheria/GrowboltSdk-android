@@ -5,8 +5,12 @@ import com.growbolt.sdk.network.model.CategoriesResponse
 import com.growbolt.sdk.network.model.Offer
 import com.growbolt.sdk.network.model.OfferDetail
 import com.growbolt.sdk.network.model.OffersResponse
+import com.growbolt.sdk.network.model.RedeemRequest
+import com.growbolt.sdk.network.model.RedeemResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -28,6 +32,12 @@ internal interface OffersApi {
     // Root is a plain array — List<Banner> directly
     @GET("sdk/banners/")
     suspend fun listBanners(): Response<List<Banner>>
+
+    @POST("sdk/offers/{id}/redeem/")
+    suspend fun redeemOffer(
+        @Path("id") offerId: Int,
+        @Body request: RedeemRequest
+    ): Response<RedeemResponse>
 
     @GET("sdk/offers/{id}/")
     suspend fun getOfferDetail(@Path("id") offerId: Int): Response<OfferDetail>

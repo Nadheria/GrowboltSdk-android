@@ -5,9 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.growbolt.sdk.R
 import com.growbolt.sdk.databinding.GrowboltItemOfferBinding
 import com.growbolt.sdk.network.model.Offer
@@ -35,8 +32,9 @@ internal class OfferListAdapter(
 
         fun bind(offer: Offer) = with(binding) {
             tvOfferTitle.text = offer.title
-            tvOfferSubtitle.text = offer.description ?: root.context.getString(R.string.growbolt_complete_now)
-            tvOfferHold.text = offer.holdPeriod?.let { "⏱ $it" } ?: ""
+            tvOfferSubtitle.text = "Register Now"
+            tvOfferHold.text = offer.holdPeriodDisplay
+
             tvOfferPrice.text = offer.payout?.revenue
                 ?.let { "$currencySymbol${"%.2f".format(it)}" }
                 ?: offer.payout?.display

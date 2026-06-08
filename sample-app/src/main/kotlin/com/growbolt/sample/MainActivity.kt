@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         GrowboltSdk.init(
             context = this,
             config = GrowboltConfig(
-                sdkToken = "tGbHWiQcj9HqHgZZmOv25rLlez63GtX8jJ8vXtLAnPc",  // Fetch from your backend
+                sdkToken = "PhWPLCNx9tTObd5kNU6HqxvsKk74n9kD8Haapvs7__4",  // Fetch from your backend
                 userId = "user-123",
                 baseUrl = "https://admin.growbolt.ai",
                 currencySymbol = "₹",

@@ -2,12 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/growbolt_bg_screen">
 
-    <!-- Scrollable content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- ── Banner image (full width, no toolbar) ─────────────────── -->
+            <!-- Banner image -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp">
@@ -29,10 +27,8 @@
                     android:id="@+id/ivBannerDetail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    />
+                    android:scaleType="centerCrop" />
 
-                <!-- Back button overlaid on banner -->
                 <ImageButton
                     android:id="@+id/ibBack"
                     android:layout_width="40dp"
@@ -43,7 +39,7 @@
                     android:contentDescription="Back" />
             </FrameLayout>
 
-            <!-- ── Offer summary card ─────────────────────────────────────── -->
+            <!-- ── CARD 1: Offer summary ──────────────────────────────────── -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +56,6 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Offer logo -->
                     <ImageView
                         android:id="@+id/ivOfferLogo"
                         android:layout_width="64dp"
@@ -68,7 +63,6 @@
                         android:background="@drawable/growbolt_offer_placeholder"
                         android:scaleType="centerCrop" />
 
-                    <!-- Title + subtitle + hold chip -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -82,7 +76,9 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/growbolt_text_primary"
                             android:textSize="17sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:maxLines="2"
+                            android:ellipsize="end" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -92,8 +88,8 @@
                             android:textSize="13sp"
                             android:layout_marginTop="2dp" />
 
-                        <!-- Hold period chip -->
                         <LinearLayout
+                            android:id="@+id/layoutHoldChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -102,7 +98,8 @@
                             android:paddingEnd="8dp"
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
-                            android:layout_marginTop="6dp">
+                            android:layout_marginTop="6dp"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:layout_width="12dp"
@@ -120,17 +117,17 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!-- Earn label + payout -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:gravity="end">
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Earn"
+                            android:layout_gravity="center"
                             android:textColor="@color/growbolt_text_secondary"
                             android:textSize="11sp" />
 
@@ -145,16 +142,29 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ── Steps card ─────────────────────────────────────────────── -->
+            <!-- ── Payment cards — each payment is its own card via RecyclerView ── -->
+            <!-- No wrapper card — RecyclerView items ARE the cards -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSubEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                />
+
+            <!-- ── Steps card (HTML kpi) — only shown when kpi/descriptionLang exists ── -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardSteps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="3dp"
-                app:cardBackgroundColor="@color/growbolt_bg_surface">
+                app:cardBackgroundColor="@color/growbolt_bg_surface"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +172,6 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Steps header row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -179,150 +188,166 @@
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <!-- Clock + payout badge row -->
-                        <LinearLayout
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/growbolt_ic_clock"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:id="@+id/tvStepsPayoutBadge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/growbolt_ic_clock"
-                                android:layout_marginEnd="6dp" />
-
-                            <TextView
-                                android:id="@+id/tvPayoutBadge"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/growbolt_payout_btn_bg"
-                                android:textColor="@color/growbolt_text_white"
-                                android:textSize="13sp"
-                                android:textStyle="bold"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp" />
-                        </LinearLayout>
+                            android:background="@drawable/growbolt_payout_btn_bg"
+                            android:textColor="@color/growbolt_text_white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp" />
                     </LinearLayout>
 
-                    <!-- Steps list container -->
                     <LinearLayout
                         android:id="@+id/layoutSteps"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
                         android:orientation="vertical" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ── Warning card ───────────────────────────────────────────── -->
-            <androidx.cardview.widget.CardView
+            <!-- ── Warning card ────────────────────────────────────────────── -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="#FFFBEC"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#F9A825"
-                app:strokeWidth="1.5dp"
-                app:cardBackgroundColor="@color/growbolt_bg_surface">
+                app:strokeColor="#D1A002"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/growbolt_warning_card_bg"
-                    android:padding="16dp">
+                    android:padding="14dp">
 
-                    <!-- Important Note row -->
+                    <!-- Important Note -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="6dp">
+                        android:orientation="horizontal"
+                        android:gravity="top"
+                        android:layout_marginBottom="12dp">
 
-                        <TextView
+                        <FrameLayout
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:text="ℹ"
-                            android:textColor="#F9A825"
-                            android:textSize="14sp"
-                            android:gravity="center" />
+                            android:background="@drawable/circle_orange_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="i"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Important Note"
-                            android:textColor="@color/growbolt_text_primary"
-                            android:textSize="13sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="6dp" />
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Important Note:"
+                                android:textColor="#E65100"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvImportantNote"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="#BF360C"
+                                android:textSize="13sp"
+                                android:lineSpacingMultiplier="1.3" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvImportantNote"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#E65100"
-                        android:textSize="13sp"
-                        android:lineSpacingMultiplier="1.4"
-                        android:layout_marginBottom="12dp"
-                        tools:text="You will Not be rewarded if you have installed this app before." />
-
-                    <!-- Warnings row -->
+                    <!-- Warnings -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="6dp">
+                        android:orientation="horizontal"
+                        android:gravity="top">
 
-                        <TextView
+                        <FrameLayout
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:text="⚠"
-                            android:textColor="#F9A825"
-                            android:textSize="14sp"
-                            android:gravity="center" />
+                            android:background="@drawable/circle_orange_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="⚠"
+                                android:textColor="#FFFFFF"
+                                android:textSize="9sp" />
+                        </FrameLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Warnings:"
-                            android:textColor="@color/growbolt_text_primary"
-                            android:textSize="13sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="6dp" />
-                    </LinearLayout>
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvWarning"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#E65100"
-                        android:textSize="13sp"
-                        android:lineSpacingMultiplier="1.4"
-                        tools:text="Fake Installs will not be entertained and will lead to deactivation of your account." />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Warnings:"
+                                android:textColor="#E65100"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvWarning"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="#BF360C"
+                                android:textSize="13sp"
+                                android:lineSpacingMultiplier="1.3" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ── Fixed bottom CTA button ───────────────────────────────────────── -->
+    <!-- Fixed CTA -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/growbolt_bg_surface"
         android:elevation="8dp"
         android:padding="16dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStartOffer"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="50dp"
             android:background="@drawable/growbolt_cta_btn_bg"
             android:textColor="@color/growbolt_text_white"
             android:textSize="17sp"
@@ -331,7 +356,6 @@
             android:stateListAnimator="@null" />
     </LinearLayout>
 
-    <!-- Loading overlay -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

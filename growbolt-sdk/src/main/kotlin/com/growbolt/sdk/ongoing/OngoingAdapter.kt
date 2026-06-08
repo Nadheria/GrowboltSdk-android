@@ -7,9 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.growbolt.sdk.R
 import com.growbolt.sdk.databinding.GrowboltItemOngoingBinding
 import com.growbolt.sdk.network.model.OngoingItem
@@ -36,10 +33,22 @@ internal class OngoingAdapter(
 
         fun bind(item: OngoingItem) = with(binding) {
             tvTitle.text = item.title
-            tvSubtitle.text = root.context.getString(R.string.growbolt_complete_now)
-            tvHold.text = item.holdPeriod?.let { "⏱ $it" } ?: ""
-            tvPayout.text = "$currencySymbol${"%.0f".format(item.payout)}"
-            tvStatus.text = item.status.uppercase()
+
+            // Subtitle from API e.g. "PartyCodeGenerated", "Install"
+            tvSubtitle.text = item.subtitle?.takeIf { it.isNotBlank() } ?: "Register Now"
+
+            // Hold period
+            tvHold.text = item.holdPeriod?.takeIf { it.isNotBlank() } ?: ""
+
+            // Payout — now an object, use display string directly
+            tvPayout.text = item.payout?.display?.takeIf { it.isNotBlank() }
+                ?: item.payout?.amount?.toDoubleOrNull()
+                    ?.let { "$currencySymbol${"%.2f".format(it)}" }
+                        ?: "$currencySymbol 0"
+
+            // Status badge — use statusLabel from API ("PROGRESS", "COMPLETED", "FAILED")
+            val statusText = item.statusLabel ?: item.status.uppercase()
+            tvStatus.text = statusText
 
             val ctx: Context = root.context
             when (item.status.lowercase()) {
@@ -55,15 +64,24 @@ internal class OngoingAdapter(
                     tvStatus.setTextColor(ContextCompat.getColor(ctx, R.color.growbolt_status_failed_text))
                     tvStatus.setBackgroundResource(R.drawable.growbolt_badge_failed)
                 }
+                else -> {
+                    tvStatus.setTextColor(ContextCompat.getColor(ctx, R.color.growbolt_text_secondary))
+                    tvStatus.setBackgroundResource(R.drawable.growbolt_badge_pending)
+                }
             }
 
-            Picasso.get()
-                .load(item.logo)
-                .placeholder(R.drawable.growbolt_offer_placeholder)
-                .error(R.drawable.growbolt_offer_placeholder)
-                .fit()
-                .centerCrop()
-                .into(ivLogo)
+            // Logo
+            if (!item.logo.isNullOrBlank()) {
+                Picasso.get()
+                    .load(item.logo)
+                    .placeholder(R.drawable.growbolt_offer_placeholder)
+                    .error(R.drawable.growbolt_offer_placeholder)
+                    .fit()
+                    .centerCrop()
+                    .into(ivLogo)
+            } else {
+                ivLogo.setImageResource(R.drawable.growbolt_offer_placeholder)
+            }
         }
     }
 

@@ -17,23 +17,11 @@
         android:paddingEnd="16dp"
         android:elevation="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
             android:layout_height="wrap_content"
-            android:text="GROW"
-            android:textColor="@color/growbolt_primary"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BOLT"
-            android:textColor="@color/growbolt_text_primary"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-black" />
+            android:src="@drawable/growblot_icon">
+        </ImageView>
     </LinearLayout>
 
     <!-- Scrollable content -->
@@ -58,77 +46,27 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="12dp" />
 
-            <!-- Dots indicator -->
-            <com.google.android.material.tabs.TabLayout
+            <LinearLayout
                 android:id="@+id/dotsIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                app:tabBackground="@drawable/growbolt_tab_active"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                app:tabMinWidth="8dp"
-                app:tabPaddingStart="4dp"
-                app:tabPaddingEnd="4dp" />
-
-            <!-- Offer Status card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardOfferStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
-                android:foreground="?attr/selectableItemBackground"
+                android:translationY="-30dp"
                 android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-      >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="12dp">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@null" />
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/growbolt_ic_offer_status"
-                        android:background="@drawable/growbolt_primary_circle"
-                        android:padding="8dp" />
+                        android:id="@+id/ivOfferStatus"
+                        android:layout_width="@dimen/_300sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/offer_status_tab_ic">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/growbolt_offer_status"
-                            android:textColor="@color/growbolt_text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/growbolt_offer_status_subtitle"
-                            android:textColor="@color/growbolt_text_secondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/growbolt_ic_arrow_right" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                    </ImageView>
 
             <!-- Category chips -->
             <HorizontalScrollView

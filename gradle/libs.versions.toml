@@ -17,6 +17,7 @@ timber                  = "5.0.1"
 junit                   = "4.13.2"
 mockk                   = "1.13.11"
 coroutinesTest          = "1.8.1"
+playServicesAdsIdentifier = "18.3.0"
 
 [libraries]
 # AndroidX
@@ -53,6 +54,7 @@ timber                         = { group = "com.jakewharton.timber",    name = "
 junit                          = { group = "junit",                     name = "junit",                 version.ref = "junit" }
 mockk                          = { group = "io.mockk",                  name = "mockk",                 version.ref = "mockk" }
 coroutines-test                = { group = "org.jetbrains.kotlinx",     name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+play-services-ads-identifier = { group = "com.google.android.gms", name = "play-services-ads-identifier", version.ref = "playServicesAdsIdentifier" }
 
 [plugins]
 android-library                = { id = "com.android.library",          version.ref = "agp" }

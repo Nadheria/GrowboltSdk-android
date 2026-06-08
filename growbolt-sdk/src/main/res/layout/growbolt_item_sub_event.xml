@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginEnd="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_4sdp"
+    android:layout_marginBottom="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_12sdp"
+    app:cardElevation="3dp"
+
+    app:cardBackgroundColor="@color/growbolt_bg_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp">
+
+        <!-- Header: title + icons + payout badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tvSubEventGoal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/growbolt_text_primary"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <!-- Icon (clock for first, lock for rest) -->
+            <ImageView
+                android:id="@+id/ivEventIcon"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:src="@drawable/ic_clock"
+                android:scaleType="centerInside" />
+
+            <!-- Payout badge -->
+            <TextView
+                android:id="@+id/tvSubEventPayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/growbolt_payout_btn_bg"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:minWidth="@dimen/_46sdp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Description / steps (HTML rendered) -->
+        <TextView
+            android:id="@+id/tvSubEventDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/growbolt_text_secondary"
+            android:textSize="@dimen/_10sdp"
+            android:lineSpacingMultiplier="1.5"
+            android:visibility="gone" />
+
+        <!-- Locked message — shown for non-first items when no description -->
+        <TextView
+            android:id="@+id/tvLockedMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete the above task to unlock this task."
+            android:textColor="@color/growbolt_text_secondary"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
