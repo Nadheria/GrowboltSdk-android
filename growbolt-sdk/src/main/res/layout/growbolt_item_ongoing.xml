@@ -98,6 +98,7 @@
                 android:textColor="@color/growbolt_text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:gravity="end" />
         </LinearLayout>

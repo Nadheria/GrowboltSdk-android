@@ -81,7 +81,7 @@ dependencies {
 
 mavenPublishing {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
-    signAllPublications()
+
     coordinates("com.growbolt", "growbolt-sdk", "1.0.0")
     pom {
         name.set("Growbolt SDK")

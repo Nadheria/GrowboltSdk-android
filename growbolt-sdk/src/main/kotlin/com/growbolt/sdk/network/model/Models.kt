@@ -70,7 +70,8 @@ data class OfferDetail(
     @SerializedName("full_categories")  val fullCategories: List<OfferCategory>?,
     @SerializedName("tags")             val tags: List<String>?,
     @SerializedName("disclaimer")       val disclaimer: String?,
-    @SerializedName("note")             val note: String?
+    @SerializedName("note")             val note: String?,
+    @SerializedName("status")            val status: String?,
 ) {
     // Sum all payments with total > 0
     val totalPayout: Double get() = payments

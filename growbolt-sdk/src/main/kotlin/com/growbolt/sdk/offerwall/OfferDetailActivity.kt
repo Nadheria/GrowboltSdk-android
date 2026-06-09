@@ -65,6 +65,8 @@ internal class OfferDetailActivity : AppCompatActivity() {
         binding.tvTitle.text = detail.title
         binding.tvPayout.text = payoutFormatted
 
+        val styledText = Html.fromHtml(detail.description, Html.FROM_HTML_MODE_COMPACT)
+        binding.tvEventDescription.text = styledText
         val holdDisplay = detail.holdPeriodDisplay
         if (holdDisplay.isNotBlank()) {
             binding.layoutHoldChip.visibility = View.VISIBLE
@@ -98,28 +100,28 @@ internal class OfferDetailActivity : AppCompatActivity() {
         subEventAdapter.submitList(payments)
 
         // ── Steps card (HTML kpi/description — shown only when present) ────────
-        val stepsHtml = detail.kpi?.takeIf { it.isNotBlank() }
-            ?: detail.descriptionLang?.takeIf { it.isNotBlank() }
-
-        if (!stepsHtml.isNullOrBlank()) {
-            binding.cardSteps.visibility = View.VISIBLE
-            binding.tvStepsPayoutBadge.text = payoutShort
-            binding.layoutSteps.removeAllViews()
-            val stepsView = TextView(this).apply {
-                text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Html.fromHtml(stepsHtml, Html.FROM_HTML_MODE_LEGACY)
-                } else {
-                    @Suppress("DEPRECATION")
-                    Html.fromHtml(stepsHtml)
-                }
-                textSize = 14f
-                setTextColor(getColor(R.color.growbolt_text_secondary))
-                setLineSpacing(0f, 1.4f)
-            }
-            binding.layoutSteps.addView(stepsView)
-        } else {
-            binding.cardSteps.visibility = View.GONE
-        }
+//        val stepsHtml = detail.kpi?.takeIf { it.isNotBlank() }
+//            ?: detail.descriptionLang?.takeIf { it.isNotBlank() }
+//
+//        if (!stepsHtml.isNullOrBlank()) {
+//            binding.cardSteps.visibility = View.VISIBLE
+//            binding.tvStepsPayoutBadge.text = payoutShort
+//            binding.layoutSteps.removeAllViews()
+//            val stepsView = TextView(this).apply {
+//                text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    Html.fromHtml(stepsHtml, Html.FROM_HTML_MODE_LEGACY)
+//                } else {
+//                    @Suppress("DEPRECATION")
+//                    Html.fromHtml(stepsHtml)
+//                }
+//                textSize = 14f
+//                setTextColor(getColor(R.color.growbolt_text_secondary))
+//                setLineSpacing(0f, 1.4f)
+//            }
+//            binding.layoutSteps.addView(stepsView)
+//        } else {
+//            binding.cardSteps.visibility = View.GONE
+//        }
 
         // ── Warning card ──────────────────────────────────────────────────────
         val importantNote = detail.note?.takeIf { it.isNotBlank() }
