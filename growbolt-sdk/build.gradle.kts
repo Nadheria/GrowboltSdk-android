@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("maven-publish")
+    id("com.vanniktech.maven.publish")
 }
 
 android {
@@ -30,7 +30,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-
     }
 
     kotlinOptions {
@@ -79,15 +78,37 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.github.Nadheria"
-                artifactId = "GrowboltSdk-android"
-                version = "v1.0.0"
+mavenPublishing {
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
+
+    // Only sign when keys are present (Maven Central) — skip for JitPack
+    if (System.getenv("SIGNING_KEY") != null) {
+        signAllPublications()
+    }
+
+    coordinates("io.github.nadheria", "growbolt-sdk", "1.0.0")
+
+    pom {
+        name.set("Growbolt SDK")
+        description.set("Growbolt Offerwall SDK for Android")
+        url.set("https://github.com/Nadheria/growboltsdk-android")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/licenses/MIT")
             }
+        }
+        developers {
+            developer {
+                id.set("nadheria")
+                name.set("Growbolt")
+                url.set("https://growbolt.com")
+            }
+        }
+        scm {
+            url.set("https://github.com/Nadheria/growboltsdk-android")
+            connection.set("scm:git:github.com/Nadheria/growboltsdk-android.git")
+            developerConnection.set("scm:git:ssh://github.com/Nadheria/growboltsdk-android.git")
         }
     }
 }
