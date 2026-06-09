@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.vanniktech.maven.publish")
+    id("maven-publish")
 }
 
 android {
@@ -79,31 +79,15 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
 }
 
-mavenPublishing {
-    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
-
-    coordinates("com.growbolt", "growbolt-sdk", "1.0.0")
-    pom {
-        name.set("Growbolt SDK")
-        description.set("Growbolt Offerwall SDK for Android")
-        url.set("https://github.com/growbolt/growbolt-android-sdk")
-        licenses {
-            license {
-                name.set("MIT License")
-                url.set("https://opensource.org/licenses/MIT")
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.Nadheria"
+                artifactId = "GrowboltSdk-android"
+                version = "v1.0.0"
             }
-        }
-        developers {
-            developer {
-                id.set("growbolt")
-                name.set("Growbolt")
-                url.set("https://growbolt.com")
-            }
-        }
-        scm {
-            url.set("https://github.com/growbolt/growbolt-android-sdk")
-            connection.set("scm:git:github.com/growbolt/growbolt-android-sdk.git")
-            developerConnection.set("scm:git:ssh://github.com/growbolt/growbolt-android-sdk.git")
         }
     }
 }
