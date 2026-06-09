@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
 
 android {
@@ -78,13 +79,13 @@ dependencies {
 }
 
 afterEvaluate {
-    publishing {
+    configure<PublishingExtension> {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
                 groupId = "com.github.Nadheria"
                 artifactId = "GrowboltSdk-android"
-                version = "v1.0.1"
+                version = "1.0.3"
             }
         }
     }
