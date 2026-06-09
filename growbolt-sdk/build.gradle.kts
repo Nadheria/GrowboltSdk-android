@@ -82,9 +82,9 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "io.github.nadheria"
-                artifactId = "growbolt-sdk"
-                version = "1.0.1"
+                groupId = "com.github.Nadheria"
+                artifactId = "GrowboltSdk-android"
+                version = "v1.0.1"
             }
         }
     }
