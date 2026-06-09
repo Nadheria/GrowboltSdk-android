@@ -64,9 +64,7 @@ internal class OfferDetailActivity : AppCompatActivity() {
         // ── CARD 1: Offer summary ─────────────────────────────────────────────
         binding.tvTitle.text = detail.title
         binding.tvPayout.text = payoutFormatted
-
-        val styledText = Html.fromHtml(detail.description, Html.FROM_HTML_MODE_COMPACT)
-        binding.tvEventDescription.text = styledText
+        binding.tvEventDescription.text = detail.descriptionLang
         val holdDisplay = detail.holdPeriodDisplay
         if (holdDisplay.isNotBlank()) {
             binding.layoutHoldChip.visibility = View.VISIBLE

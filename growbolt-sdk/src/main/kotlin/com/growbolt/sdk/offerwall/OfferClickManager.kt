@@ -43,6 +43,8 @@ internal object OfferClickManager {
             Settings.Secure.ANDROID_ID
         ) ?: "unknown"
 
+
+
         val sub3 = withContext(Dispatchers.IO) {
             try {
                 com.google.android.gms.ads.identifier.AdvertisingIdClient
@@ -200,4 +202,6 @@ internal object OfferClickManager {
             Logger.e(TAG, "Failed to open URL: $url", e)
         }
     }
+
+
 }
