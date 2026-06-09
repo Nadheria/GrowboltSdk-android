@@ -96,12 +96,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Jitpack badge added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Minor Bugs fixes">
       <change beforePath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780986232056</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Minor Bugs fixes">
+      <option name="closed" value="true" />
+      <created>1780988233130</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780988233130</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,7 +347,8 @@
     <MESSAGE value="Fix: remove GPG signing for JitPack" />
     <MESSAGE value="Fix JitPack publishing config" />
     <MESSAGE value="Jitpack badge added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jitpack badge added" />
+    <MESSAGE value="Minor Bugs fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor Bugs fixes" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
