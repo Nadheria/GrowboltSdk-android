@@ -1,5 +1,7 @@
 # Growbolt Android SDK
 
+[![](https://jitpack.io/v/Nadheria/GrowboltSdk-android.svg)](https://jitpack.io/#Nadheria/GrowboltSdk-android)
+
 Native Android Offerwall SDK for the Growbolt platform.
 
 [![](https://jitpack.io/v/growbolt/growbolt-android-sdk.svg)](https://jitpack.io/#growbolt/growbolt-android-sdk)
