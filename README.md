@@ -47,24 +47,7 @@ dependencies {
 
 ## Integration
 
-### Step 1 — Your backend issues the SDK token
-
-Your backend must call:
-```
-POST /api/v1/sdk/token/
-Authorization: Bearer <dashboard_jwt>
-{
-  "device_id": "...",
-  "user_agent": "..."
-}
-```
-Response:
-```json
-{ "key": "opaque-sdk-token", "token_type": "SdkToken" }
-```
-Return that `key` to your app.
-
-### Step 2 — Initialise the SDK (once, in Application.onCreate)
+### Step 1 — Initialise the SDK (once, in Application.onCreate)
 
 Call this once, as early as possible — it's safe to call before the user has logged in.
 `userId` is optional at this point; pass it later via `identify()` once you know who the user is.
@@ -91,7 +74,7 @@ class MyApplication : Application() {
 }
 ```
 
-### Step 3 — Identify the user after login
+### Step 2 — Identify the user after login
 
 As soon as your own login flow has a stable identifier for the user (phone number, email,
 internal user id — whatever you use), call:
@@ -103,7 +86,7 @@ GrowboltSdk.identify(userId = phoneNumberOrEmailOrUserId)
 This can be called any time after `init()`, from any screen — not just at app start.
 Safe to call again later if the identifier changes (e.g. account merge).
 
-### Step 4 — Reset on logout
+### Step 3 — Reset on logout
 
 ```kotlin
 GrowboltSdk.reset()
@@ -112,7 +95,7 @@ GrowboltSdk.reset()
 Clears the stored `userId` without tearing down the rest of the SDK — no need to call
 `init()` again for the next user to log in, just call `identify()` once they do.
 
-### Step 5 — Register callback
+### Step 4 — Register callback
 
 ```kotlin
 GrowboltSdk.registerOfferwallCallback(object : OfferwallCallback {
@@ -126,13 +109,13 @@ GrowboltSdk.registerOfferwallCallback(object : OfferwallCallback {
 })
 ```
 
-### Step 6 — Show the offerwall
+### Step 5 — Show the offerwall
 
 ```kotlin
 GrowboltSdk.showOfferwall(activity)
 ```
 
-### Step 7 — Unregister in onDestroy
+### Step 6 — Unregister in onDestroy
 
 ```kotlin
 override fun onDestroy() {
