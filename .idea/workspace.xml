@@ -20,12 +20,27 @@
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_bg_payout_pill.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_cta_btn_bg.xml">
         <config>
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_header_gradient.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_ic_coin.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_offer_placeholder.xml">
         <config>
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
@@ -46,6 +61,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_tabs_container.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/offer_place_holder.xml">
         <config>
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
@@ -97,7 +117,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Minor Bugs fixes">
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_bg_payout_pill.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_ic_coin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/offer_place_holder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltSdk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltSdk.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/network/model/Models.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/network/model/Models.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/BannerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/BannerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferStatusActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferStatusActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferwallActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferwallActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/SubEventAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/SubEventAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/ui/OfferListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/ui/OfferListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/util/Logger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/util/Logger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_offer_placeholder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_offer_placeholder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_sub_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_sub_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/com/growbolt/sample/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/com/growbolt/sample/MainActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,8 +162,8 @@
       <list>
         <option value="valueResourceFile" />
         <option value="Kotlin Class" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -161,7 +205,7 @@
     "Android App.sample-app.executor": "Run",
     "ApkExportedModule": "GrowboltSdk.sample-app",
     "BundleExportedModule": "GrowboltSdk.sample-app",
-    "ExportApk.ApkPathForGrowboltSdk.sample-app": "/Users/govind/Desktop/growbolt-sdk/sample-app",
+    "ExportApk.ApkPathForGrowboltSdk.sample-app": "/Users/govind/Desktop",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -175,7 +219,7 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "/Users/govind/Desktop/growbolt-sdk/growbolt-sdk/src/main/res/drawable",
-    "last_opened_file_path": "/Users/govind/Desktop/growbolt-sdk/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall",
+    "last_opened_file_path": "/Users/govind/Desktop/growbolt-sdk 2/growbolt-sdk/src/main/res/drawable",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -190,11 +234,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall" />
       <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing" />
       <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk" />
       <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt" />
-      <recent name="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable" />
     </key>
   </component>
   <component name="RunManager">
@@ -365,7 +409,7 @@
         </entry>
         <entry key="com.growbolt.sdk.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1780920907634" />
+            <CheckInfo lastCheckTimestamp="1781680096066" />
           </value>
         </entry>
       </map>

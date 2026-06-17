@@ -90,17 +90,31 @@
                 android:paddingBottom="3dp"
                 android:gravity="center" />
 
-            <!-- Payout amount -->
-            <TextView
-                android:id="@+id/tvPayout"
+            <!-- Payout amount: currency icon + text -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/growbolt_text_primary"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:gravity="center_vertical"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:gravity="end" />
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/ivPayoutCurrencyIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="3dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/growbolt_ic_coin" />
+
+                <TextView
+                    android:id="@+id/tvPayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/growbolt_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

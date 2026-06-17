@@ -13,7 +13,6 @@ import com.growbolt.sdk.network.model.OngoingItem
 import com.squareup.picasso.Picasso
 
 internal class OngoingAdapter(
-    private val currencySymbol: String
 ) : ListAdapter<OngoingItem, OngoingAdapter.OngoingViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
@@ -40,11 +39,32 @@ internal class OngoingAdapter(
             // Hold period
             tvHold.text = item.holdPeriod?.takeIf { it.isNotBlank() } ?: ""
 
-            // Payout — now an object, use display string directly
+            // Payout — display string first, else amount + actual currency name (e.g. "Gems"),
+            // never a hardcoded symbol since the reward currency varies per offer
             tvPayout.text = item.payout?.display?.takeIf { it.isNotBlank() }
-                ?: item.payout?.amount?.toDoubleOrNull()
-                    ?.let { "$currencySymbol${"%.2f".format(it)}" }
-                        ?: "$currencySymbol 0"
+                ?: item.payout?.amount?.let { amount ->
+                    val formatted = if (amount == amount.toLong().toDouble()) {
+                        "%,d".format(amount.toLong())
+                    } else {
+                        "%,.2f".format(amount)
+                    }
+                    val currencyName = item.payout?.currencyName?.takeIf { it.isNotBlank() }
+                    if (currencyName != null) "$formatted $currencyName" else formatted
+                } ?: "0"
+
+            // Currency icon — from payout.currency_icon, fallback to coin drawable
+            val currencyIconUrl = item.payout?.currencyIcon
+            if (!currencyIconUrl.isNullOrBlank()) {
+                Picasso.get()
+                    .load(currencyIconUrl)
+                    .placeholder(R.drawable.growbolt_ic_coin)
+                    .error(R.drawable.growbolt_ic_coin)
+                    .fit()
+                    .centerCrop()
+                    .into(ivPayoutCurrencyIcon)
+            } else {
+                ivPayoutCurrencyIcon.setImageResource(R.drawable.growbolt_ic_coin)
+            }
 
             // Status badge — use statusLabel from API ("PROGRESS", "COMPLETED", "FAILED")
             val statusText = item.statusLabel ?: item.status.uppercase()

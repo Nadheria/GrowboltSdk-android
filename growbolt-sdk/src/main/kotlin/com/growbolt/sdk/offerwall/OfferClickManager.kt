@@ -33,9 +33,16 @@ internal object OfferClickManager {
         onLoading: (Boolean) -> Unit,
         onError: (String) -> Unit
     ) {
-        onLoading(true)
-
         val config = GrowboltSdk.config
+
+        val sub4 = config.userId
+        if (sub4.isNullOrBlank()) {
+            Logger.w(TAG, "handleClick: no userId set — call GrowboltSdk.identify(userId) after login first.")
+            onError("User not identified yet. Please try again after logging in.")
+            return
+        }
+
+        onLoading(true)
 
         // Collect all sub params
         val deviceId = Settings.Secure.getString(
@@ -55,7 +62,6 @@ internal object OfferClickManager {
             }
         }
 
-        val sub4 = config.userId
         val sub5 = deviceId
         val sub6 = "V1.0.0"
         val sub7 = "${Build.MANUFACTURER} ${Build.MODEL}".trim()

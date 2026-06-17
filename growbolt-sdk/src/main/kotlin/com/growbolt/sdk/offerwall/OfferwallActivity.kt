@@ -41,7 +41,7 @@ internal class OfferwallActivity : AppCompatActivity() {
 
     // ── Offer list — proper RecyclerView, NO NestedScrollView ────────────
     private fun setupOfferList() {
-        offerAdapter = OfferListAdapter(GrowboltSdk.config.currencySymbol) { offer ->
+        offerAdapter = OfferListAdapter() { offer ->
             startActivity(
                 Intent(this, OfferDetailActivity::class.java).apply {
                     putExtra(OfferDetailActivity.EXTRA_OFFER_ID, offer.id)

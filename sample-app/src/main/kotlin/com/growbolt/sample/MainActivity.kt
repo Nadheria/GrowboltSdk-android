@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.growbolt.sdk.BuildConfig
 import com.growbolt.sdk.GrowboltConfig
 import com.growbolt.sdk.GrowboltSdk
 import com.growbolt.sdk.offerwall.OfferwallCallback
@@ -41,16 +42,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
         GrowboltSdk.init(
             context = this,
             config = GrowboltConfig(
-                sdkToken = "PhWPLCNx9tTObd5kNU6HqxvsKk74n9kD8Haapvs7__4",  // Fetch from your backend
-                userId = "user-123",
-                baseUrl = "https://admin.growbolt.ai",
-                currencySymbol = "₹",
-                debug = true  // false in production
+                sdkToken = "PhWPLCNx9tTObd5kNU6HqxvsKk74n9kD8Haapvs7__4",  // etch from your backend
+                debug    = BuildConfig.DEBUG
             )
         )
+        GrowboltSdk.identify(userId = "test_user2")
 
         GrowboltSdk.registerOfferwallCallback(offerwallCallback)
 

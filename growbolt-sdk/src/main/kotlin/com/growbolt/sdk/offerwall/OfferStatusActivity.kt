@@ -78,7 +78,7 @@ internal class OfferStatusActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        ongoingAdapter = OngoingAdapter(GrowboltSdk.config.currencySymbol)
+        ongoingAdapter = OngoingAdapter()
         binding.rvOngoing.apply {
             layoutManager = LinearLayoutManager(this@OfferStatusActivity)
             adapter = ongoingAdapter

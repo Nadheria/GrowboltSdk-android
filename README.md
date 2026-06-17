@@ -64,22 +64,55 @@ Response:
 ```
 Return that `key` to your app.
 
-### Step 2 — Initialise the SDK (once, in Application.onCreate or first Activity)
+### Step 2 — Initialise the SDK (once, in Application.onCreate)
+
+Call this once, as early as possible — it's safe to call before the user has logged in.
+`userId` is optional at this point; pass it later via `identify()` once you know who the user is.
 
 ```kotlin
-GrowboltSdk.init(
-    context = applicationContext,
-    config = GrowboltConfig(
-        sdkToken = fetchedTokenFromYourBackend,
-        userId   = "stable-user-id",         // used as sub4 for Ongoing lookups
-        baseUrl  = "https://api.growbolt.com",
-        currencySymbol = "₹",
-        debug    = BuildConfig.DEBUG
-    )
-)
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        
+        GrowboltSdk.init(
+            context = this,
+            config = GrowboltConfig(
+                sdkToken = "fetchedTokenFromYourBackend",  // Fetch from your backend
+                debug    = BuildConfig.DEBUG
+            )
+        )
+
+        // If the user is already logged in from a previous session, identify them now
+        val savedUserId = yourSharedPrefs.getString("user_id", null)
+        if (!savedUserId.isNullOrBlank()) {
+            GrowboltSdk.identify(savedUserId)
+        }
+    }
+}
 ```
 
-### Step 3 — Register callback
+### Step 3 — Identify the user after login
+
+As soon as your own login flow has a stable identifier for the user (phone number, email,
+internal user id — whatever you use), call:
+
+```kotlin
+GrowboltSdk.identify(userId = phoneNumberOrEmailOrUserId)
+```
+
+This can be called any time after `init()`, from any screen — not just at app start.
+Safe to call again later if the identifier changes (e.g. account merge).
+
+### Step 4 — Reset on logout
+
+```kotlin
+GrowboltSdk.reset()
+```
+
+Clears the stored `userId` without tearing down the rest of the SDK — no need to call
+`init()` again for the next user to log in, just call `identify()` once they do.
+
+### Step 5 — Register callback
 
 ```kotlin
 GrowboltSdk.registerOfferwallCallback(object : OfferwallCallback {
@@ -93,13 +126,13 @@ GrowboltSdk.registerOfferwallCallback(object : OfferwallCallback {
 })
 ```
 
-### Step 4 — Show the offerwall
+### Step 6 — Show the offerwall
 
 ```kotlin
 GrowboltSdk.showOfferwall(activity)
 ```
 
-### Step 5 — Unregister in onDestroy
+### Step 7 — Unregister in onDestroy
 
 ```kotlin
 override fun onDestroy() {
@@ -114,7 +147,10 @@ override fun onDestroy() {
 
 | Method | Description |
 |---|---|
-| `GrowboltSdk.init(context, config)` | Initialise SDK. Call once. |
+| `GrowboltSdk.init(context, config)` | Initialise SDK. Call once, safe before login (userId optional). |
+| `GrowboltSdk.identify(userId)` | Attach/update the user identifier after login. Call any time after `init()`. |
+| `GrowboltSdk.reset()` | Clear the current userId on logout. SDK stays initialised. |
+| `GrowboltSdk.setDebugEnabled(enabled)` | Toggle verbose logcat output at runtime, no re-init needed. |
 | `GrowboltSdk.showOfferwall(context)` | Launch offerwall Activity. |
 | `GrowboltSdk.registerOfferwallCallback(cb)` | Register event callback. |
 | `GrowboltSdk.unregisterOfferwallCallback()` | Clear callback (call in onDestroy). |
@@ -131,23 +167,6 @@ override fun onDestroy() {
 | Offer Detail | Full offer info + CTA button with sub4 injected |
 | Offer Status | Pending / Completed / Failed tabs with counts |
 | Empty State | "Explore Offer" with CTA back to offerwall |
-
----
-
-## Publishing
-
-### JitPack
-Push a git tag (`v1.0.0`) — JitPack builds automatically.
-
-### Maven Central
-Set secrets in GitHub repo settings:
-- `MAVEN_CENTRAL_USERNAME`
-- `MAVEN_CENTRAL_PASSWORD`
-- `SIGNING_KEY`, `SIGNING_KEY_ID`, `SIGNING_KEY_PASSWORD`
-
-Then create a GitHub Release — CI publishes automatically.
-
----
 
 ## License
 MIT

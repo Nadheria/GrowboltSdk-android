@@ -1,10 +1,7 @@
 package com.growbolt.sdk.offerwall
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.View
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -32,8 +29,10 @@ internal class OfferDetailActivity : AppCompatActivity() {
 
         binding.ibBack.setOnClickListener { finish() }
 
-        // Each payment renders as its own card — no wrapper card needed
-        subEventAdapter = SubEventAdapter(GrowboltSdk.config.currencySymbol)
+        binding.scrollContent.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+
+        subEventAdapter = SubEventAdapter()
         binding.rvSubEvents.apply {
             layoutManager = LinearLayoutManager(this@OfferDetailActivity)
             adapter = subEventAdapter
@@ -46,25 +45,40 @@ internal class OfferDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(this) { loading ->
-            binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+            if (loading) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.scrollContent.visibility = View.INVISIBLE
+            }
         }
+
         viewModel.offerDetail.observe(this) { detail ->
             detail ?: return@observe
             bindDetail(detail)
+            binding.progressBar.visibility = View.GONE
+            binding.scrollContent.apply {
+                alpha = 0f
+                visibility = View.VISIBLE
+                animate().alpha(1f).setDuration(250).start()
+            }
+        }
+
+        viewModel.error.observe(this) { error ->
+            error ?: return@observe
+            binding.progressBar.visibility = View.GONE
+            android.widget.Toast.makeText(this, error, android.widget.Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
     private fun bindDetail(detail: OfferDetail) {
-        val config = GrowboltSdk.config
-        val currencySymbol = config.currencySymbol
-        val totalPayout = detail.totalPayout
-        val payoutFormatted = "$currencySymbol${"%.2f".format(totalPayout)}"
-        val payoutShort = "$currencySymbol${"%.0f".format(totalPayout)}"
+        val payoutFormatted = detail.payoutFormatted
+        val payoutShort = detail.payoutShort
 
         // ── CARD 1: Offer summary ─────────────────────────────────────────────
         binding.tvTitle.text = detail.title
-        binding.tvPayout.text = payoutFormatted
+        binding.tvPayout.text = detail.currencyReward?.display ?: payoutFormatted
         binding.tvEventDescription.text = detail.descriptionLang
+
         val holdDisplay = detail.holdPeriodDisplay
         if (holdDisplay.isNotBlank()) {
             binding.layoutHoldChip.visibility = View.VISIBLE
@@ -73,6 +87,33 @@ internal class OfferDetailActivity : AppCompatActivity() {
             binding.layoutHoldChip.visibility = View.GONE
         }
 
+        // Currency icon in earn button — from currency_reward or first payment
+        val currencyIconUrl = detail.currencyIconUrl
+        if (!currencyIconUrl.isNullOrBlank()) {
+            Picasso.get()
+                .load(currencyIconUrl)
+                .placeholder(R.drawable.growbolt_ic_coin)
+                .error(R.drawable.growbolt_ic_coin)
+                .fit().centerCrop()
+                .into(binding.ivDetailCurrencyIcon)
+        } else {
+            binding.ivDetailCurrencyIcon.setImageResource(R.drawable.growbolt_ic_coin)
+        }
+
+        // Banner
+        val bannerUrl = detail.bannerUrl
+        if (!bannerUrl.isNullOrBlank()) {
+            Picasso.get()
+                .load(bannerUrl)
+                .placeholder(R.drawable.offer_place_holder)
+                .error(R.drawable.offer_place_holder)
+                .fit().centerCrop()
+                .into(binding.ivBannerDetail)
+        } else {
+            binding.ivBannerDetail.setImageResource(R.drawable.offer_place_holder)
+        }
+
+        // Logo
         if (!detail.logoUrl.isNullOrBlank()) {
             Picasso.get()
                 .load(detail.logoUrl)
@@ -80,46 +121,17 @@ internal class OfferDetailActivity : AppCompatActivity() {
                 .error(R.drawable.growbolt_offer_placeholder)
                 .fit().centerCrop()
                 .into(binding.ivOfferLogo)
-            Picasso.get()
-                .load(detail.logoUrl)
-                .fit().centerCrop()
-                .into(binding.ivBannerDetail)
         } else {
             binding.ivOfferLogo.setImageResource(R.drawable.growbolt_offer_placeholder)
-            binding.ivBannerDetail.setImageResource(R.drawable.growbolt_banner_placeholder)
         }
 
-        // ── Payment cards — each payment = its own card in RecyclerView ───────
+        // ── Payment cards ─────────────────────────────────────────────────────
         val payments = detail.payments
-            ?.filter { (it.total?.toDoubleOrNull() ?: 0.0) > 0.0 }
+            ?.filter { it.earnAmount > 0.0 }
             ?.sortedBy { it.position ?: 0 }
             ?: emptyList()
 
         subEventAdapter.submitList(payments)
-
-        // ── Steps card (HTML kpi/description — shown only when present) ────────
-//        val stepsHtml = detail.kpi?.takeIf { it.isNotBlank() }
-//            ?: detail.descriptionLang?.takeIf { it.isNotBlank() }
-//
-//        if (!stepsHtml.isNullOrBlank()) {
-//            binding.cardSteps.visibility = View.VISIBLE
-//            binding.tvStepsPayoutBadge.text = payoutShort
-//            binding.layoutSteps.removeAllViews()
-//            val stepsView = TextView(this).apply {
-//                text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    Html.fromHtml(stepsHtml, Html.FROM_HTML_MODE_LEGACY)
-//                } else {
-//                    @Suppress("DEPRECATION")
-//                    Html.fromHtml(stepsHtml)
-//                }
-//                textSize = 14f
-//                setTextColor(getColor(R.color.growbolt_text_secondary))
-//                setLineSpacing(0f, 1.4f)
-//            }
-//            binding.layoutSteps.addView(stepsView)
-//        } else {
-//            binding.cardSteps.visibility = View.GONE
-//        }
 
         // ── Warning card ──────────────────────────────────────────────────────
         val importantNote = detail.note?.takeIf { it.isNotBlank() }
@@ -131,7 +143,7 @@ internal class OfferDetailActivity : AppCompatActivity() {
             "Fake installs will not be entertained and will lead to deactivation of your account."
 
         // ── CTA button ────────────────────────────────────────────────────────
-        binding.btnStartOffer.text = "Claim $payoutFormatted"
+        binding.btnStartOffer.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"
         binding.btnStartOffer.setOnClickListener {
             lifecycleScope.launch {
                 OfferClickManager.handleClick(

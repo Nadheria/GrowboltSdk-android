@@ -10,7 +10,6 @@
     android:layout_marginBottom="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/_12sdp"
     app:cardElevation="3dp"
-
     app:cardBackgroundColor="@color/growbolt_bg_surface">
 
     <LinearLayout
@@ -19,7 +18,7 @@
         android:orientation="vertical"
         android:padding="@dimen/_12sdp">
 
-        <!-- Header: title + icons + payout badge -->
+        <!-- Header: title + icon + payout badge -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +34,7 @@
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
-            <!-- Icon (clock for first, lock for rest) -->
+            <!-- Clock / Lock icon -->
             <ImageView
                 android:id="@+id/ivEventIcon"
                 android:layout_width="@dimen/_18sdp"
@@ -44,34 +43,48 @@
                 android:src="@drawable/ic_clock"
                 android:scaleType="centerInside" />
 
-            <!-- Payout badge -->
-            <TextView
-                android:id="@+id/tvSubEventPayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!-- Payout badge: currency icon + amount — fixed width so it doesn't resize per step -->
+            <LinearLayout
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_22sdp"
                 android:background="@drawable/growbolt_payout_btn_bg"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_9sdp"
-                android:textStyle="bold"
-                android:paddingStart="@dimen/_8sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:paddingTop="@dimen/_2sdp"
-                android:paddingBottom="@dimen/_2sdp"
-                android:minWidth="@dimen/_46sdp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivPayoutCurrencyIcon"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:src="@drawable/growbolt_ic_coin"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/tvSubEventPayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/_9sdp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Description / steps (HTML rendered) -->
+        <!-- Description (HTML) -->
         <TextView
             android:id="@+id/tvSubEventDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/growbolt_text_secondary"
             android:textSize="@dimen/_10sdp"
-            android:lineSpacingMultiplier="1.5"
             android:visibility="gone" />
 
-        <!-- Locked message — shown for non-first items when no description -->
+        <!-- Locked message -->
         <TextView
             android:id="@+id/tvLockedMessage"
             android:layout_width="wrap_content"

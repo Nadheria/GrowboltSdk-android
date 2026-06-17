@@ -43,8 +43,8 @@ internal class BannerAdapter(
 
             Picasso.get()
                 .load(imageUrl)
-                .placeholder(R.drawable.growbolt_banner_placeholder)
-                .error(R.drawable.growbolt_banner_placeholder)
+                .placeholder(R.drawable.offer_place_holder)
+                .error(R.drawable.offer_place_holder)
                 .fit()
                 .centerCrop()
                 .into(binding.ivBanner)

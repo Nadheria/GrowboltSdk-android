@@ -60,8 +60,8 @@
 
                     <ImageView
                         android:id="@+id/ivOfferStatus"
-                        android:layout_width="@dimen/_300sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_280sdp"
+                        android:layout_height="@dimen/_43sdp"
                         android:layout_gravity="center"
                         android:scaleType="fitXY"
                         android:src="@drawable/offer_status_tab_ic">

@@ -34,12 +34,22 @@ internal class OngoingViewModel : ViewModel() {
 
     fun loadOngoing(tab: OngoingTab = currentTab) {
         currentTab = tab
+
+        val userId = GrowboltSdk.config.userId
+        if (userId.isNullOrBlank()) {
+            Logger.w(TAG, "loadOngoing: no userId set — call GrowboltSdk.identify(userId) after login first.")
+            _items.value = emptyList()
+            _counts.value = null
+            _error.value = "User not identified yet."
+            return
+        }
+
         _isLoading.value = true
         _error.value = null
 
         viewModelScope.launch {
             val result = safeApiCall {
-                api.getOngoing(sub4 = GrowboltSdk.config.userId, tab = tab.apiValue)
+                api.getOngoing(sub4 = userId, tab = tab.apiValue)
             }
             _isLoading.value = false
             when (result) {

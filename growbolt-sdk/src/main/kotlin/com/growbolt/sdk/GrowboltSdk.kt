@@ -13,7 +13,15 @@ import com.growbolt.sdk.util.Logger
  * Main entry point for the Growbolt SDK.
  *
  * Usage:
- *   GrowboltSdk.init(context, GrowboltConfig(sdkToken = "...", userId = "..."))
+ *   // In Application.onCreate() — before the user has logged in:
+ *   GrowboltSdk.init(context, GrowboltConfig(sdkToken = "..."))
+ *
+ *   // After your app's own login flow gives you a user identifier:
+ *   GrowboltSdk.identify(userId = "user-phone-or-email-or-id")
+ *
+ *   // On logout:
+ *   GrowboltSdk.reset()
+ *
  *   GrowboltSdk.showOfferwall(activity, callback)
  */
 object GrowboltSdk {
@@ -37,6 +45,9 @@ object GrowboltSdk {
     /**
      * Initialise the SDK. Call once from Application.onCreate() or your first Activity.
      *
+     * Safe to call before the user has logged in — pass [GrowboltConfig.userId] as null
+     * (or simply omit it) and call [identify] later once your app knows who the user is.
+     *
      * @param context Any context — the SDK retains only the application context.
      * @param config  SDK configuration including the SdkToken from your backend.
      */
@@ -49,7 +60,56 @@ object GrowboltSdk {
         _tokenManager = TokenManager(appContext).also { it.saveToken(config.sdkToken) }
         _apiClient = GrowboltApiClient(config, _tokenManager!!)
 
-        Logger.d("GrowboltSdk", "Initialised — userId=${config.userId} baseUrl=${config.baseUrl}")
+        Logger.d("GrowboltSdk", "Initialised — userId=${config.userId ?: "not set"} baseUrl=${config.baseUrl}")
+    }
+
+    /**
+     * Attach (or update) the user identifier after your app's own login flow completes.
+     * Call this as soon as you have a stable identifier for the user (phone, email, internal id).
+     *
+     * Safe to call multiple times — e.g. if the identifier changes after a profile update.
+     *
+     * @param userId Stable user identifier — used as sub4 in redeem/ongoing lookups.
+     */
+    @JvmStatic
+    fun identify(userId: String) {
+        checkInitialised()
+        require(userId.isNotBlank()) { "identify: userId must not be blank." }
+        _config = config.copy(userId = userId)
+        Logger.isEnabled = config.debug
+        Logger.d("GrowboltSdk", "Identified — userId=$userId")
+    }
+
+    /**
+     * Clear the current user identifier — call on logout.
+     * The SDK remains initialised (token/config retained); only [GrowboltConfig.userId] is cleared.
+     */
+    @JvmStatic
+    fun reset() {
+        checkInitialised()
+        _config = config.copy(userId = null)
+        Logger.isEnabled = config.debug
+        Logger.d("GrowboltSdk", "Reset — userId cleared.")
+    }
+
+    /**
+     * Turn verbose SDK logging on or off at runtime, without re-initialising the SDK.
+     *
+     * Use this instead of calling [init] again just to flip logging — re-calling [init]
+     * would also recreate the token manager and API client, which is unnecessary overhead.
+     *
+     * Note: this only controls [Logger] output (d/i/w/e calls throughout the SDK).
+     * The OkHttp request/response body logging interceptor is wired up once at [init] time
+     * based on [GrowboltConfig.debug] and cannot be toggled afterward without re-initialising.
+     *
+     * @param enabled true to enable verbose logcat output, false to silence it.
+     */
+    @JvmStatic
+    fun setDebugEnabled(enabled: Boolean) {
+        checkInitialised()
+        _config = config.copy(debug = enabled)
+        Logger.isEnabled = enabled
+        Logger.d("GrowboltSdk", "Debug logging ${if (enabled) "enabled" else "disabled"}.")
     }
 
     /**

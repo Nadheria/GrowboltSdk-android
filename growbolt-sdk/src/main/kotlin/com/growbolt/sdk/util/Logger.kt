@@ -11,6 +11,5 @@ internal object Logger {
     fun w(tag: String, msg: String) { if (isEnabled) Log.w("$ROOT_TAG/$tag", msg) }
     fun e(tag: String, msg: String, throwable: Throwable? = null) {
         if (isEnabled) Log.e("$ROOT_TAG/$tag", msg, throwable)
-        else if (throwable != null) Log.e("$ROOT_TAG/$tag", msg, throwable)
     }
 }
