@@ -116,16 +116,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Maven centerl added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/values/colors.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Maven centerl added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
