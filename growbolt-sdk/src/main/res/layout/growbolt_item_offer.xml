@@ -13,15 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="12dp">
+        android:padding="@dimen/_10sdp">
 
-        <!-- Offer logo -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/offerIconCard"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="wrap">
+
+
+
         <ImageView
             android:id="@+id/ivOfferLogo"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/growbolt_offer_placeholder" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/offer_place_holder" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Offer logo -->
 
         <!-- Title + meta -->
         <LinearLayout

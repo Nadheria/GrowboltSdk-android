@@ -142,6 +142,7 @@ internal class OfferDetailActivity : AppCompatActivity() {
             ?: "You will not be rewarded if you have installed this app before."
         binding.tvWarning.text = detail.disclaimer
 
+
         // ── CTA button ────────────────────────────────────────────────────────
         binding.btnStartOffer.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"
         binding.btnStartOffer.setOnClickListener {
