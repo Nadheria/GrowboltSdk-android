@@ -135,12 +135,12 @@ internal class OfferDetailActivity : AppCompatActivity() {
 
         // ── Warning card ──────────────────────────────────────────────────────
         val importantNote = detail.note?.takeIf { it.isNotBlank() }
+
             ?: detail.disclaimer?.takeIf { it.isNotBlank() }
         binding.cardWarning.visibility = View.VISIBLE
         binding.tvImportantNote.text = importantNote
             ?: "You will not be rewarded if you have installed this app before."
-        binding.tvWarning.text =
-            "Fake installs will not be entertained and will lead to deactivation of your account."
+        binding.tvWarning.text = detail.disclaimer
 
         // ── CTA button ────────────────────────────────────────────────────────
         binding.btnStartOffer.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"

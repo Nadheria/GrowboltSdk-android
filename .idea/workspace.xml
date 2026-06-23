@@ -116,32 +116,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Minor Bugs fixes">
-      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_bg_payout_pill.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_ic_coin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/offer_place_holder.xml" afterDir="false" />
+    <list default="true" id="8740ae9a-039d-499c-adfb-2372a8b10159" name="Changes" comment="Update readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltSdk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/GrowboltSdk.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/network/model/Models.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/network/model/Models.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/BannerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/BannerAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferClickManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferStatusActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferStatusActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferwallActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/OfferwallActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/SubEventAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/SubEventAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/ui/OfferListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/offerwall/ui/OfferListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/ongoing/OngoingViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/util/Logger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/kotlin/com/growbolt/sdk/util/Logger.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_offer_placeholder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/drawable/growbolt_offer_placeholder.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offer_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_activity_offerwall.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_offer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_ongoing.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_sub_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/growbolt-sdk/src/main/res/layout/growbolt_item_sub_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/com/growbolt/sample/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/com/growbolt/sample/MainActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +136,55 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GrowboltSdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -183,13 +212,19 @@
     &quot;assignee&quot;: &quot;Nadheria&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Nadheria/GrowboltSdk-android.git&quot;,
-    &quot;accountId&quot;: &quot;8d52e862-eed5-418e-983f-f69a1e37f9b7&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Growbolt/Growbolt-sdk-andorid-.git",
+    "accountId": "8d52e862-eed5-418e-983f-f69a1e37f9b7"
   }
-}</component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gradle-8.7" javaHome="$APPLICATION_HOME_DIR$/jbr/Contents/Home" gradleVersion="8.7" />
+}]]></component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gradle-8.7" javaHome="$APPLICATION_HOME_DIR$/jbr/Contents/Home" gradleVersion="8.7">
+    <option name="jvmArguments">
+      <list>
+        <option value="-Didea.gradle.download.sources.force=true" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -208,6 +243,7 @@
     "ExportApk.ApkPathForGrowboltSdk.sample-app": "/Users/govind/Desktop",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
@@ -218,8 +254,9 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "kotlin.migration.detection.enabled": "false",
     "last_directory_selection": "/Users/govind/Desktop/growbolt-sdk/growbolt-sdk/src/main/res/drawable",
-    "last_opened_file_path": "/Users/govind/Desktop/growbolt-sdk 2/growbolt-sdk/src/main/res/drawable",
+    "last_opened_file_path": "/Users/govind/Desktop/growbolt-sdk 2",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -371,7 +408,23 @@
       <option name="project" value="LOCAL" />
       <updated>1780988233130</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Currency type and ui bugs are fixed">
+      <option name="closed" value="true" />
+      <created>1781688289142</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781688289142</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update readme">
+      <option name="closed" value="true" />
+      <created>1781697138874</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781697138874</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -392,24 +445,26 @@
     <MESSAGE value="Fix JitPack publishing config" />
     <MESSAGE value="Jitpack badge added" />
     <MESSAGE value="Minor Bugs fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Bugs fixes" />
+    <MESSAGE value="Currency type and ui bugs are fixed" />
+    <MESSAGE value="Update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update readme" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="com.growbolt.sample">
           <value>
-            <CheckInfo lastCheckTimestamp="1780653547147" />
+            <CheckInfo lastCheckTimestamp="1782130886809" />
           </value>
         </entry>
         <entry key="com.growbolt.sample.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1780653547148" />
+            <CheckInfo lastCheckTimestamp="1782130886390" />
           </value>
         </entry>
         <entry key="com.growbolt.sdk.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1781680096066" />
+            <CheckInfo lastCheckTimestamp="1782191105830" />
           </value>
         </entry>
       </map>

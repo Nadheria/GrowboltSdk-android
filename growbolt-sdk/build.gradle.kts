@@ -2,6 +2,12 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
+    id("com.vanniktech.maven.publish")
+    id("signing")
+}
+
+signing {
+    useGpgCmd()
 }
 
 android {
@@ -78,15 +84,57 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
 }
 
-afterEvaluate {
-    configure<PublishingExtension> {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.github.Nadheria"
-                artifactId = "GrowboltSdk-android"
-                version = "1.0.3"
+// ── JitPack publication (existing, untouched) ──────────────────────────────
+// JitPack builds directly from the GitHub repo and uses this publication.
+// Left exactly as-is so the existing JitPack flow keeps working unchanged.
+
+// ── Maven Central publication (new, separate from JitPack above) ──────────
+// Configured via the vanniktech plugin, which the root build.gradle.kts
+// already declares (version 0.28.0). This publishes under the verified
+// ai.growbolt namespace and is triggered separately, e.g.:
+//   ./gradlew publishAndReleaseToMavenCentral
+// It does not interfere with the JitPack "release" publication above —
+// vanniktech creates its own "maven" publication under the hood.
+mavenPublishing {
+    coordinates(
+        groupId = "ai.growbolt",
+        artifactId = "growbolt-sdk",
+        version = "1.0.3"
+    )
+
+    pom {
+        name.set("Growbolt Android SDK")
+        description.set("Native Android Offerwall SDK for the Growbolt platform.")
+        url.set("https://github.com/Growbolt/Growbolt-sdk-andorid-")
+
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
             }
         }
+
+        developers {
+            developer {
+                id.set("growbolt")
+                name.set("Growbolt")
+                url.set("https://github.com/Growbolt")
+            }
+        }
+
+        scm {
+            url.set("https://github.com/Growbolt/Growbolt-sdk-andorid-")
+            connection.set("scm:git:git://github.com/Growbolt/Growbolt-sdk-andorid-.git")
+            developerConnection.set("scm:git:ssh://git@github.com/Growbolt/Growbolt-sdk-andorid-.git")
+        }
     }
+
+    // Publishes to the new Central Portal (central.sonatype.com), not the
+    // legacy OSSRH host — correct target for accounts created after the migration.
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
+
+    // Required by Central: every artifact (aar, sources jar, javadoc jar, pom)
+    // must be GPG-signed. Reads signing.* properties from ~/.gradle/gradle.properties
+    // (signing.keyId, signing.password, signing.secretKeyRingFile) — never from this file.
+    signAllPublications()
 }
