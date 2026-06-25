@@ -96,6 +96,7 @@ data class OfferDetail(
     @SerializedName("status")           val status: String?,
     @SerializedName("creatives")        val creatives: List<Creative>?,
     @SerializedName("currency_reward") val currencyReward: CurrencyReward?,
+    @SerializedName("expiry")          val expiry: String?,
 ) {
     // Currency from first payment that has one
 
@@ -205,6 +206,7 @@ data class OngoingItem(
     @SerializedName("created_at")   val createdAt: String?,
     @SerializedName("status_label") val statusLabel: String?,
     @SerializedName("payout")       val payout: OngoingPayout?,
+    @SerializedName("offer_id") val offerId: Int?,
 
     )
 

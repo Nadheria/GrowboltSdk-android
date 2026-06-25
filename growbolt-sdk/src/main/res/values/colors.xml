@@ -4,10 +4,12 @@
     <color name="growbolt_primary_dark">#098F5C</color>
     <color name="growbolt_primary_light">#E8F8EF</color>
     <color name="growbolt_text_primary">#1A1A1A</color>
+    <color name="growbolt_black_color">#000000</color>
     <color name="growbolt_text_secondary">#757575</color>
     <color name="growbolt_text_white">#FFFFFF</color>
     <color name="growbolt_bg_surface">#FFFFFF</color>
     <color name="growbolt_bg_screen">#FFFFFF</color>
+    <color name="growbolt_bg_screen2">#0eb982</color>
     <color name="growbolt_status_pending_bg">#FFF8E1</color>
     <color name="growbolt_status_pending_text">#F9A825</color>
     <color name="growbolt_status_completed_bg">#E8F8EF</color>

@@ -37,23 +37,17 @@ internal class SubEventAdapter(
             // Title
             binding.tvSubEventGoal.text = payment.title ?: "Step ${position + 1}"
 
-            // Payout badge — use payment.currency (e.g. "Gems") not currencySymbol (₹).
-            // currencySymbol is the SDK's app-currency (rupees) and is unrelated to the
-            // offer's reward currency, which varies per offer (Gems, Coins, etc.) and
-            // comes from payment.currency — same source OfferListAdapter uses via currencyReward.
+            // Payout badge — format with K suffix if >= 1000
             val amount = payment.userPayout?.toDoubleOrNull()
                 ?: payment.total?.toDoubleOrNull()
 
             binding.tvSubEventPayout.text = amount?.let { value ->
-                val formatted = if (value == value.toLong().toDouble()) {
-                    "%,d".format(value.toLong())
-                } else {
-                    "%,.2f".format(value)
-                }
+                val formatted = formatAmount(value)
                 val currencyName = payment.currency?.takeIf { it.isNotBlank() } ?: ""
                 if (currencyName.isNotBlank()) "$formatted $currencyName" else formatted
             } ?: ""
 
+            // Currency icon
             val iconUrl = payment.currencyIcon
             if (!iconUrl.isNullOrBlank()) {
                 Picasso.get()
@@ -100,6 +94,34 @@ internal class SubEventAdapter(
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Payment>() {
             override fun areItemsTheSame(old: Payment, new: Payment) = old.id == new.id
             override fun areContentsTheSame(old: Payment, new: Payment) = old == new
+        }
+
+        /**
+         * Formats a number with K/M suffix when >= 1000
+         * 500    → "500"
+         * 1000   → "1K"
+         * 1500   → "1.5K"
+         * 10000  → "10K"
+         * 1000000 → "1M"
+         */
+        fun formatAmount(value: Double): String {
+            return when {
+                value >= 1_000_000 -> {
+                    val m = value / 1_000_000
+                    if (m == m.toLong().toDouble()) "${m.toLong()}M" else "%.1fM".format(m)
+                }
+                value >= 1_000 -> {
+                    val k = value / 1_000
+                    if (k == k.toLong().toDouble()) "${k.toLong()}K" else "%.1fK".format(k)
+                }
+                else -> {
+                    if (value == value.toLong().toDouble()) {
+                        value.toLong().toString()
+                    } else {
+                        "%.2f".format(value)
+                    }
+                }
+            }
         }
     }
 }

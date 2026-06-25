@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/growbolt_bg_screen">
+    android:fitsSystemWindows="true"
+    android:background="#f6f6f6">
 
     <!-- Green header with gradient + tabs -->
     <FrameLayout
@@ -72,36 +73,50 @@
         android:gravity="center_vertical"
         android:translationY="-30dp"
         android:background="@drawable/rounded_background"
-        android:padding="6dp">
-
-        <Button
-            android:id="@+id/tabPending"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/growbolt_tab_active"
-            android:textColor="@color/growbolt_text_white"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:stateListAnimator="@null"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Pending (0)" />
+        android:padding="4dp">
 
         <Button
             android:id="@+id/tabCompleted"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/growbolt_tab_inactive"
-            android:textColor="#9E9E9E"
-            android:textSize="11sp"
+            android:background="@drawable/growbolt_tab_active"
+            android:textColor="@color/growbolt_text_white"
+            android:textStyle="bold"
             android:textAllCaps="false"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="8sp"
+            android:autoSizeMaxTextSize="11sp"
             android:stateListAnimator="@null"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Completed (0)" />
+
+        <Button
+            android:id="@+id/tabPending"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/growbolt_tab_inactive"
+            android:textColor="#9E9E9E"
+            android:textAllCaps="false"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="8sp"
+            android:autoSizeMaxTextSize="11sp"
+            android:stateListAnimator="@null"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Pending (0)" />
 
         <Button
             android:id="@+id/tabFailed"
@@ -110,7 +125,14 @@
             android:layout_weight="1"
             android:background="@drawable/growbolt_tab_inactive"
             android:textColor="#9E9E9E"
-            android:textSize="11sp"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="8sp"
+            android:autoSizeMaxTextSize="11sp"
             android:textAllCaps="false"
             android:stateListAnimator="@null"
             android:insetTop="0dp"
@@ -123,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:translationY="@dimen/_50sdp"
         android:visibility="visible" />
 
     <!-- Ongoing list -->
@@ -132,7 +154,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="8dp"
+        android:translationY="@dimen/_minus20sdp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:paddingBottom="16dp"
@@ -147,7 +169,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="gone"
-        tools:visibility="visible">
+      >
 
         <ImageView
             android:layout_width="140dp"

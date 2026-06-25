@@ -15,7 +15,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24  // Android 7.0 (Nougat)
+        minSdk = 24
         targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -24,7 +24,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
@@ -82,24 +81,14 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.0")
     implementation("com.intuit.sdp:sdp-android:1.1.1")
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation("com.airbnb.android:lottie:6.4.0")
 }
 
-// ── JitPack publication (existing, untouched) ──────────────────────────────
-// JitPack builds directly from the GitHub repo and uses this publication.
-// Left exactly as-is so the existing JitPack flow keeps working unchanged.
-
-// ── Maven Central publication (new, separate from JitPack above) ──────────
-// Configured via the vanniktech plugin, which the root build.gradle.kts
-// already declares (version 0.28.0). This publishes under the verified
-// ai.growbolt namespace and is triggered separately, e.g.:
-//   ./gradlew publishAndReleaseToMavenCentral
-// It does not interfere with the JitPack "release" publication above —
-// vanniktech creates its own "maven" publication under the hood.
 mavenPublishing {
     coordinates(
         groupId = "ai.growbolt",
         artifactId = "growbolt-sdk",
-        version = "1.0.3"
+        version = "1.1.1"
     )
 
     pom {
@@ -129,12 +118,9 @@ mavenPublishing {
         }
     }
 
-    // Publishes to the new Central Portal (central.sonatype.com), not the
-    // legacy OSSRH host — correct target for accounts created after the migration.
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
 
-    // Required by Central: every artifact (aar, sources jar, javadoc jar, pom)
-    // must be GPG-signed. Reads signing.* properties from ~/.gradle/gradle.properties
-    // (signing.keyId, signing.password, signing.secretKeyRingFile) — never from this file.
-    signAllPublications()
+    if (System.getenv("SIGNING_KEY") != null || project.hasProperty("signing.keyId")) {
+        signAllPublications()
+    }
 }

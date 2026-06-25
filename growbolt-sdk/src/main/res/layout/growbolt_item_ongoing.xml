@@ -1,120 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/growbolt_bg_surface">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="14dp">
+        android:layout_height="match_parent"
+        android:background="#f5f5f5"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Offer logo -->
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/growbolt_offer_placeholder" />
-
-        <!-- Title + subtitle + hold -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="12dp">
+            android:layout_margin="@dimen/_2sdp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:backgroundTint="@color/growbolt_bg_surface"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/growbolt_text_primary"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:layout_margin="@dimen/_4sdp">
 
-            <TextView
-                android:id="@+id/tvSubtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/growbolt_text_secondary"
-                android:textSize="12sp"
-                android:layout_marginTop="2dp" />
+                <!-- Offer logo -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/offerIconCard"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:backgroundTint="@color/growbolt_bg_surface"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginTop="4dp">
+                    <ImageView
+                        android:id="@+id/ivLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/offer_place_holder" />
 
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@drawable/growbolt_ic_clock" />
+                </androidx.cardview.widget.CardView>
 
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:translationY="@dimen/_minus5sdp"
+                    android:textColor="@color/growbolt_text_primary"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/offerIconCard"
+                    app:layout_constraintEnd_toStartOf="@+id/layoutRightSection"
+                    app:layout_constraintStart_toEndOf="@+id/offerIconCard"
+                    app:layout_constraintTop_toTopOf="@+id/offerIconCard"
+                    app:layout_constraintVertical_bias="0.281" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/tvSubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:translationY="@dimen/_minus2sdp"
+                    android:textSize="11sp"
+                    android:textColor="@color/growbolt_text_secondary"
+                    app:layout_constraintEnd_toStartOf="@+id/layoutRightSection"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                    app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+
+                <!-- Right section: status badge + payout -->
+                <LinearLayout
+                    android:id="@+id/layoutRightSection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!-- Status badge -->
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <!-- Currency icon + payout amount -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/ivPayoutCurrencyIcon"
+                            android:layout_width="@dimen/_16sdp"
+                            android:layout_height="@dimen/_16sdp"
+                            android:layout_marginEnd="3dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/growbolt_ic_coin" />
+
+                        <TextView
+                            android:id="@+id/tvPayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/growbolt_text_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Hidden hold period text -->
                 <TextView
                     android:id="@+id/tvHold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/growbolt_primary"
+                    android:visibility="gone"
                     android:textSize="11sp"
-                    android:layout_marginStart="3dp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:textColor="@color/growbolt_text_secondary"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
 
-        <!-- Right side: status badge + payout -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="end|center_vertical">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            <!-- Status badge -->
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:gravity="center" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Payout amount: currency icon + text -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp">
-
-                <ImageView
-                    android:id="@+id/ivPayoutCurrencyIcon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="3dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/growbolt_ic_coin" />
-
-                <TextView
-                    android:id="@+id/tvPayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/growbolt_text_primary"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:gravity="end" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

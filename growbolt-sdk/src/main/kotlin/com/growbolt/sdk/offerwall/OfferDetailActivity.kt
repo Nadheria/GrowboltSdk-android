@@ -3,17 +3,17 @@ package com.growbolt.sdk.offerwall
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.growbolt.sdk.GrowboltSdk
 import com.growbolt.sdk.R
+import com.growbolt.sdk.core.GrowboltBaseActivity
 import com.growbolt.sdk.databinding.GrowboltActivityOfferDetailBinding
 import com.growbolt.sdk.network.model.OfferDetail
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
-internal class OfferDetailActivity : AppCompatActivity() {
+internal class OfferDetailActivity : GrowboltBaseActivity() {
 
     private lateinit var binding: GrowboltActivityOfferDetailBinding
     private lateinit var subEventAdapter: SubEventAdapter
@@ -24,6 +24,10 @@ internal class OfferDetailActivity : AppCompatActivity() {
         binding = GrowboltActivityOfferDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // Ensure CTA button sits above navigation bar in host apps with gesture nav
+//        applyNavigationBarInsets(binding.btnStartOffer.parent as android.view.View)
+
         val offerId = intent.getIntExtra(EXTRA_OFFER_ID, -1)
         if (offerId == -1) { finish(); return }
 
@@ -31,6 +35,9 @@ internal class OfferDetailActivity : AppCompatActivity() {
 
         binding.scrollContent.visibility = View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
+
+        // Apply nav bar insets so CTA button is never hidden behind gesture nav bar
+
 
         subEventAdapter = SubEventAdapter()
         binding.rvSubEvents.apply {
@@ -73,7 +80,9 @@ internal class OfferDetailActivity : AppCompatActivity() {
     private fun bindDetail(detail: OfferDetail) {
         val payoutFormatted = detail.payoutFormatted
         val payoutShort = detail.payoutShort
+        binding.tvTimeTag.text = detail.expiry
 
+        // Shine animation on CTA button
         // ── CARD 1: Offer summary ─────────────────────────────────────────────
         binding.tvTitle.text = detail.title
         binding.tvPayout.text = detail.currencyReward?.display ?: payoutFormatted
@@ -142,10 +151,9 @@ internal class OfferDetailActivity : AppCompatActivity() {
             ?: "You will not be rewarded if you have installed this app before."
         binding.tvWarning.text = detail.disclaimer
 
-
         // ── CTA button ────────────────────────────────────────────────────────
-        binding.btnStartOffer.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"
-        binding.btnStartOffer.setOnClickListener {
+//        binding.xOfferImg.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"
+        binding.xOfferImg.setOnClickListener {
             lifecycleScope.launch {
                 OfferClickManager.handleClick(
                     context = this@OfferDetailActivity,
@@ -153,7 +161,7 @@ internal class OfferDetailActivity : AppCompatActivity() {
                     onLoading = { loading ->
                         binding.progressBar.visibility =
                             if (loading) View.VISIBLE else View.GONE
-                        binding.btnStartOffer.isEnabled = !loading
+                        binding.xOfferImg.isEnabled = !loading
                     },
                     onError = { error ->
                         android.widget.Toast.makeText(
@@ -170,4 +178,5 @@ internal class OfferDetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_OFFER_ID = "extra_offer_id"
     }
+
 }

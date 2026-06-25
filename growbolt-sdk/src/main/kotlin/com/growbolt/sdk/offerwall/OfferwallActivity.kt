@@ -6,16 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.growbolt.sdk.GrowboltSdk
 import com.growbolt.sdk.R
+import com.growbolt.sdk.core.GrowboltBaseActivity
 import com.growbolt.sdk.databinding.GrowboltActivityOfferwallBinding
 import com.growbolt.sdk.offerwall.ui.BannerAdapter
 import com.growbolt.sdk.offerwall.ui.CategoryChipHelper
 import com.growbolt.sdk.offerwall.ui.OfferListAdapter
 
-internal class OfferwallActivity : AppCompatActivity() {
+internal class OfferwallActivity : GrowboltBaseActivity() {
 
     private lateinit var binding: GrowboltActivityOfferwallBinding
     private val viewModel: OfferwallViewModel by viewModels()

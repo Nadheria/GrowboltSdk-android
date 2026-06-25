@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.growbolt.sdk.R
 import com.growbolt.sdk.databinding.GrowboltItemOfferBinding
 import com.growbolt.sdk.network.model.Offer
-import com.growbolt.sdk.network.model.currencySymbol
 import com.squareup.picasso.Picasso
 
 internal class OfferListAdapter(
@@ -113,7 +112,7 @@ private class CenteredImageSpan(drawable: Drawable) : ImageSpan(drawable) {
 private fun TextView.setOfferMeta(subtitle: String, holdTime: String) {
     val context = this.context
     val greenColor = 0xFF10B981.toInt()
-    val secondaryColor = ContextCompat.getColor(context, R.color.growbolt_text_secondary)
+    val secondaryColor = ContextCompat.getColor(context, R.color.growbolt_black_color)
     val ssb = SpannableStringBuilder()
 
     ssb.append(subtitle)
