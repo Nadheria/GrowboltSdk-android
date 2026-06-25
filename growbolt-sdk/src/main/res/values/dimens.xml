@@ -8,4 +8,5 @@
     <dimen name="growbolt_offer_logo_size">60dp</dimen>
     <dimen name="growbolt_banner_height">180dp</dimen>
     <dimen name="growbolt_payout_btn_min_width">80dp</dimen>
+
 </resources>

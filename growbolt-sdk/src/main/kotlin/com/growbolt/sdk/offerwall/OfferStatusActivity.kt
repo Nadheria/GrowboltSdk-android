@@ -26,12 +26,17 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
         binding = GrowboltActivityOfferStatusBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Apply status-bar top inset to the green header FrameLayout so the
+        // back button and title are never drawn under the status bar.
+        // This works on all API levels (21+) and all nav modes (gesture / 3-button).
+        applyStatusBarInsets(binding.root.getChildAt(0)) // first child = green FrameLayout header
+
         setupBackButton()
         setupTabs()
         setupRecyclerView()
         observeViewModel()
 
-        // Load counts first via "all" tab, then switch to completed (new default first tab)
+        // Load counts first via "all" tab, then switch to completed (default first tab)
         viewModel.loadOngoing(OngoingTab.ALL)
     }
 
@@ -41,11 +46,10 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
     }
 
     private fun setupTabs() {
-        // Tab order: Completed → Pending → Failed
         binding.tabCompleted.setOnClickListener { selectTab(OngoingTab.COMPLETED) }
         binding.tabPending.setOnClickListener { selectTab(OngoingTab.PROGRESS) }
         binding.tabFailed.setOnClickListener { selectTab(OngoingTab.FAILED) }
-        updateTabUI(OngoingTab.COMPLETED) // default selected tab is now Completed
+        updateTabUI(OngoingTab.COMPLETED)
     }
 
     private fun selectTab(tab: OngoingTab) {
@@ -54,12 +58,10 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
     }
 
     private fun updateTabUI(tab: OngoingTab) {
-        // Reset all tabs to inactive
         listOf(binding.tabCompleted, binding.tabPending, binding.tabFailed).forEach { btn ->
             btn.setBackgroundResource(R.drawable.growbolt_tab_inactive)
             btn.setTextAppearance(R.style.GrowboltTabInactive)
         }
-        // Activate selected tab
         val activeBtn = when (tab) {
             OngoingTab.COMPLETED -> binding.tabCompleted
             OngoingTab.PROGRESS  -> binding.tabPending
@@ -88,7 +90,6 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
         }
     }
 
-    // Navigate to offer detail only for pending/progress offers
     private fun navigateToOfferDetail(item: OngoingItem) {
         if (item.status.lowercase() == "progress") {
             val offerId = item.offerId ?: return
@@ -109,7 +110,6 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
             c ?: return@observe
             counts = c
             updateTabLabels(c)
-            // After loading ALL to get counts, switch to COMPLETED view (new default)
             if (viewModel.currentTab == OngoingTab.ALL) {
                 selectTab(OngoingTab.COMPLETED)
             }

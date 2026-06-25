@@ -24,9 +24,9 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
         binding = GrowboltActivityOfferDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // Ensure CTA button sits above navigation bar in host apps with gesture nav
-//        applyNavigationBarInsets(binding.btnStartOffer.parent as android.view.View)
+        // Apply nav bar insets so the CTA Lottie button is never hidden behind
+        // the gesture navigation bar or the 3-button nav bar on any Android version.
+        applyNavigationBarInsets(binding.xOfferImg)
 
         val offerId = intent.getIntExtra(EXTRA_OFFER_ID, -1)
         if (offerId == -1) { finish(); return }
@@ -35,9 +35,6 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
 
         binding.scrollContent.visibility = View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
-
-        // Apply nav bar insets so CTA button is never hidden behind gesture nav bar
-
 
         subEventAdapter = SubEventAdapter()
         binding.rvSubEvents.apply {
@@ -79,10 +76,8 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
 
     private fun bindDetail(detail: OfferDetail) {
         val payoutFormatted = detail.payoutFormatted
-        val payoutShort = detail.payoutShort
         binding.tvTimeTag.text = detail.expiry
 
-        // Shine animation on CTA button
         // ── CARD 1: Offer summary ─────────────────────────────────────────────
         binding.tvTitle.text = detail.title
         binding.tvPayout.text = detail.currencyReward?.display ?: payoutFormatted
@@ -144,7 +139,6 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
 
         // ── Warning card ──────────────────────────────────────────────────────
         val importantNote = detail.note?.takeIf { it.isNotBlank() }
-
             ?: detail.disclaimer?.takeIf { it.isNotBlank() }
         binding.cardWarning.visibility = View.VISIBLE
         binding.tvImportantNote.text = importantNote
@@ -152,7 +146,6 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
         binding.tvWarning.text = detail.disclaimer
 
         // ── CTA button ────────────────────────────────────────────────────────
-//        binding.xOfferImg.text = "Claim ${detail.currencyReward?.display ?: payoutFormatted}"
         binding.xOfferImg.setOnClickListener {
             lifecycleScope.launch {
                 OfferClickManager.handleClick(
@@ -178,5 +171,4 @@ internal class OfferDetailActivity : GrowboltBaseActivity() {
     companion object {
         const val EXTRA_OFFER_ID = "extra_offer_id"
     }
-
 }

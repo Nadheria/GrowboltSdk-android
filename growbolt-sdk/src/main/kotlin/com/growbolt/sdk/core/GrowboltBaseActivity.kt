@@ -6,13 +6,14 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
 internal abstract class GrowboltBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Clear fullscreen flags before super so window is configured correctly
+        // 1. Clear any stale fullscreen / translucent flags from the host app or older SDK code.
         window.clearFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN or
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or
@@ -20,13 +21,12 @@ internal abstract class GrowboltBaseActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         )
 
-        // On Android 15+ edge-to-edge is forced ON by default
-        // We need to explicitly opt out so our layout doesn't draw behind system bars
-        if (Build.VERSION.SDK_INT >= 35) {
-            window.decorView.setOnApplyWindowInsetsListener { view, insets ->
-                view.onApplyWindowInsets(insets)
-            }
-        }
+        // 2. Tell the framework we are handling insets ourselves.
+        //    This is the modern replacement for fitsSystemWindows="true" on the root
+        //    and for windowTranslucentStatus in the theme.
+        //    Works on API 21+ via the Compat wrapper; on API 35+ it also opts out of
+        //    the forced edge-to-edge introduced in Android 15.
+        WindowCompat.setDecorFitsSystemWindows(window, true)
 
         super.onCreate(savedInstanceState)
     }
@@ -39,18 +39,19 @@ internal abstract class GrowboltBaseActivity : AppCompatActivity() {
     private fun forceSystemUiVisible() {
         val controller = WindowInsetsControllerCompat(window, window.decorView)
 
-        // Show both status bar and navigation bar
+        // Make sure both bars are shown.
         controller.show(WindowInsetsCompat.Type.statusBars())
         controller.show(WindowInsetsCompat.Type.navigationBars())
 
-        // White icons on dark green status bar
+        // Dark icons on the light-grey nav bar; white icons on the green status bar.
         controller.isAppearanceLightStatusBars = false
         controller.isAppearanceLightNavigationBars = true
     }
 
     /**
-     * Apply top inset to a view so it sits below the status bar.
-     * Use this on your root content view or toolbar.
+     * Apply top padding to [view] so its content starts below the status bar.
+     * Call this on your root content view or toolbar if you opted out of
+     * [WindowCompat.setDecorFitsSystemWindows] and are managing insets manually.
      */
     protected fun applyStatusBarInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
@@ -66,8 +67,8 @@ internal abstract class GrowboltBaseActivity : AppCompatActivity() {
     }
 
     /**
-     * Apply bottom inset to a view so it sits above the navigation bar.
-     * Use this on your CTA button or bottom bar.
+     * Apply bottom padding to [view] so it sits above the gesture/nav bar.
+     * Call this on any fixed-bottom CTA or bottom bar in the layout.
      */
     protected fun applyNavigationBarInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->

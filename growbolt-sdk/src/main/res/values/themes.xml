@@ -1,35 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="GrowboltTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/growbolt_primary</item>
-        <item name="colorPrimaryDark">@color/growbolt_primary_dark</item>
-
-        <!-- Transparent so host app's background shows through — fixes white status bar issue -->
-        <item name="android:windowBackground">@color/growbolt_primary</item>
-
-        <!-- Do NOT force a status bar color — let the host app control it -->
-        <!-- <item name="android:statusBarColor">@color/growbolt_primary_dark</item> -->
-
-        <item name="android:navigationBarColor">#f5f5f5</item>
-
-        <!-- Force system bars visible -->
-        <item name="android:windowFullscreen">false</item>
-
-        <!-- Allow status bar to be drawn over by content (edge-to-edge) -->
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-
-        <!-- Inherit host app's status bar icon style — do not force override -->
-        <!-- <item name="android:windowLightStatusBar">false</item> -->
-
-        <!-- Dark nav bar icons — our nav bar is light grey -->
-        <item name="android:windowLightNavigationBar">true</item>
+    <style name="GrowboltExploreButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/growbolt_primary</item>
+        <item name="android:textColor">@color/growbolt_text_white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
     </style>
-
-
-
-    <!-- Offer card payout button -->
+    <style name="GrowboltFilterChip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/growbolt_bg_surface</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipStrokeColor">@color/growbolt_primary</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/growbolt_text_primary</item>
+    </style>
     <style name="GrowboltPayoutButton" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/growbolt_payout_bg</item>
         <item name="android:textColor">@color/growbolt_payout_text</item>
@@ -45,38 +32,41 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
-
     <style name="GrowboltTabActive" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/growbolt_text_white</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-
     <style name="GrowboltTabInactive" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/growbolt_text_secondary</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="GrowboltFilterChip" parent="Widget.MaterialComponents.Chip.Filter">
-        <item name="chipBackgroundColor">@color/growbolt_bg_surface</item>
-        <item name="checkedIconVisible">false</item>
-        <item name="chipStrokeColor">@color/growbolt_primary</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <item name="android:textColor">@color/growbolt_text_primary</item>
+    <style name="GrowboltTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/growbolt_primary</item>
+        <item name="colorPrimaryDark">@color/growbolt_primary_dark</item>
+
+        <!-- FIX: Use a white/screen background, not the green primary color.
+             The green primary was causing the blank/green status bar flash. -->
+        <item name="android:windowBackground">@color/growbolt_bg_screen</item>
+
+        <!-- FIX: Remove windowTranslucentStatus. It was making the status bar
+             area transparent with no color, producing the blank bar you saw.
+             We now use WindowCompat.setDecorFitsSystemWindows(window, true)
+             in GrowboltBaseActivity so the system draws the status bar normally. -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <!-- Keep the light-grey nav bar with dark icons (unchanged). -->
+        <item name="android:navigationBarColor">#f5f5f5</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Status bar color: use a solid color so it is never blank.
+             API 21+ respects this. The icon color (white) is set in code via
+             WindowInsetsControllerCompat in GrowboltBaseActivity. -->
+        <item name="android:statusBarColor">@color/growbolt_primary</item>
+
+        <item name="android:windowFullscreen">false</item>
     </style>
-
-    <style name="GrowboltExploreButton" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/growbolt_primary</item>
-        <item name="android:textColor">@color/growbolt_text_white</item>
-        <item name="android:textSize">15sp</item>
-        <item name="cornerRadius">12dp</item>
-        <item name="android:paddingStart">24dp</item>
-        <item name="android:paddingEnd">24dp</item>
-        <item name="android:paddingTop">14dp</item>
-        <item name="android:paddingBottom">14dp</item>
-    </style>
-
-    <attr name="growboltFilterChipStyle" format="reference" />
-
 </resources>
