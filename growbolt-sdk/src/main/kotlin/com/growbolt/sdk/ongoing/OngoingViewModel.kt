@@ -51,7 +51,7 @@ internal class OngoingViewModel : ViewModel() {
             val result = safeApiCall {
                 api.getOngoing(sub4 = userId, tab = tab.apiValue)
             }
-            _isLoading.value = false
+            _isLoading.value = false    
             when (result) {
                 is ApiResult.Success -> {
                     _items.value = result.data.items

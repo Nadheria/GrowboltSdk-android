@@ -26,4 +26,38 @@
 
     <attr format="reference" name="growboltFilterChipStyle"/>
 
+
+
+
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="grey">#d2e0bf</color>
+
+    <color name="colorBackground">#F4F4F4</color>
+    <color name="fadedBlack">#7e7e7e</color>
+    <color name="green">#0eb982</color>
+    <color name="fed">#cacaca</color>
+    <color name="light_green">#e9fcea</color>
+    <color name="light_black">#9f9f9f</color>
+    <color name="dark_green">#1ab1ab</color>
+    <color name="light_yellow">#eed240</color>
+    <color name="dark_red">#dc3545</color>
+    <color name="light_red">#fcebed</color>
+    <color name="transparent">#00000000</color>
+    <color name="mustard">#dd6e33</color>
+    <color name="light_mustard">#fbe7de</color>
+    <color name="brown">#a2786f</color>
+
+
+    <color name="red">#F44336</color>
+    <color name="purple">#9C27B0</color>
+    <color name="blue">#2196F3</color>
+    <color name="orange">#FF9800</color>
+    <color name="light_blue">#03A9F4</color>
+
+
 </resources>

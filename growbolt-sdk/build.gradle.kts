@@ -12,11 +12,11 @@ signing {
 
 android {
     namespace = "com.growbolt.sdk"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -82,13 +82,14 @@ dependencies {
     implementation("com.intuit.sdp:sdp-android:1.1.1")
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.airbnb.android:lottie:6.4.0")
+    implementation("androidx.activity:activity:1.9.0")
 }
 
 mavenPublishing {
     coordinates(
         groupId = "ai.growbolt",
         artifactId = "growbolt-sdk",
-        version = "1.1.8"
+        version = "1.2.2"
     )
 
     pom {

@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 debug    = BuildConfig.DEBUG
             )
         )
-        GrowboltSdk.identify(userId = "test_user2")
+        GrowboltSdk.identify(userId = "lakrasatyam11@gmail.com")
 
         GrowboltSdk.registerOfferwallCallback(offerwallCallback)
 

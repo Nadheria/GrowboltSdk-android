@@ -20,6 +20,7 @@ internal interface OffersApi {
     @GET("sdk/offers/")
     suspend fun listOffers(
         @Query("search")   search: String?   = null,
+        @Query("sub4")   sub4: String?   = null,
         @Query("category") category: String? = null,
         @Query("tag")      tag: String?      = null,
         @Query("os")       os: String?       = null

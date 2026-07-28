@@ -46,27 +46,11 @@
     <style name="GrowboltTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/growbolt_primary</item>
         <item name="colorPrimaryDark">@color/growbolt_primary_dark</item>
-
-        <!-- FIX: Use a white/screen background, not the green primary color.
-             The green primary was causing the blank/green status bar flash. -->
-        <item name="android:windowBackground">@color/growbolt_bg_screen</item>
-
-        <!-- FIX: Remove windowTranslucentStatus. It was making the status bar
-             area transparent with no color, producing the blank bar you saw.
-             We now use WindowCompat.setDecorFitsSystemWindows(window, true)
-             in GrowboltBaseActivity so the system draws the status bar normally. -->
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-
-        <!-- Keep the light-grey nav bar with dark icons (unchanged). -->
+        <item name="android:windowBackground">@color/growbolt_primary</item>
         <item name="android:navigationBarColor">#f5f5f5</item>
-        <item name="android:windowLightNavigationBar">true</item>
-
-        <!-- Status bar color: use a solid color so it is never blank.
-             API 21+ respects this. The icon color (white) is set in code via
-             WindowInsetsControllerCompat in GrowboltBaseActivity. -->
-        <item name="android:statusBarColor">@color/growbolt_primary</item>
-
         <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 </resources>

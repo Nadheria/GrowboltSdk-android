@@ -24,6 +24,10 @@ internal class OfferwallActivity : GrowboltBaseActivity() {
 
     // Auto-slide
     private val autoSlideHandler = Handler(Looper.getMainLooper())
+
+    val config = GrowboltSdk.config
+
+
     private var autoSlideRunnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +35,14 @@ internal class OfferwallActivity : GrowboltBaseActivity() {
         binding = GrowboltActivityOfferwallBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         setupOfferList()
         setupOfferStatus()
         observeViewModel()
 
         viewModel.loadBanners()
-        viewModel.loadOffers()
+        viewModel.loadOffers("",config.userId,"")
         viewModel.loadCategories()
     }
 

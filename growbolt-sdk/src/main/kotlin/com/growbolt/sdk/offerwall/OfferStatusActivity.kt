@@ -21,9 +21,12 @@ internal class OfferStatusActivity : GrowboltBaseActivity() {
     private lateinit var ongoingAdapter: OngoingAdapter
     private var counts: OngoingCounts? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = GrowboltActivityOfferStatusBinding.inflate(layoutInflater)
+        applyStatusBarInsets(binding.headerFrame)
         setContentView(binding.root)
 
         // Apply status-bar top inset to the green header FrameLayout so the

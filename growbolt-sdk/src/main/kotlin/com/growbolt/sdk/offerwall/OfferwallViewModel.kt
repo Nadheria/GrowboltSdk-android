@@ -38,6 +38,7 @@ internal class OfferwallViewModel : ViewModel() {
 
     fun loadOffers(
         search: String? = null,
+        sub4: String? = null,
         category: String? = null,
         tag: String? = null,
         os: String? = null
@@ -49,6 +50,7 @@ internal class OfferwallViewModel : ViewModel() {
         viewModelScope.launch {
             val result = safeApiCall {
                 GrowboltSdk.apiClient.offersApi.listOffers(
+                    sub4 = sub4,
                     search = search,
                     category = category,
                     tag = tag,
